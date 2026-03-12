@@ -1,0 +1,350 @@
+{
+  "nav": {
+    "home": "Accueil",
+    "vehicles": "Véhicules",
+    "rental": "Location",
+    "contact": "Contact",
+    "allVehicles": "Tous les véhicules",
+    "newListing": "Nouvelle annonce"
+  },
+  "hero": {
+    "title": "AUTO ROI",
+    "subtitle": "Achat — Vente — Reprise Automobile",
+    "vehiclesAvailable": "{count} véhicules disponibles",
+    "searchPlaceholder": "Rechercher un véhicule...",
+    "advancedSearch": "Recherche avancée",
+    "scrollDown": "Découvrir",
+    "stats": {
+      "vehiclesInStock": "Véhicules en stock",
+      "bilingualService": "Service bilingue",
+      "available": "Disponible"
+    }
+  },
+  "vehicle": {
+    "new": "NOUVEAU",
+    "sold": "VENDU",
+    "featured": "À la une",
+    "km": "{value} km",
+    "year": "Année {value}",
+    "negotiable": "Prix négociable",
+    "viewDetails": "Voir le détail",
+    "contactForVehicle": "Je suis intéressé par votre {brand} {model} (réf: {ref})",
+    "similarVehicles": "Véhicules similaires",
+    "noPhotos": "Aucune photo disponible",
+    "shareVehicle": "Partager cette annonce",
+    "copyLink": "Copier le lien",
+    "reportListing": "Signaler",
+    "viewCount": "{count} vue(s)",
+    "publishedAt": "Publié le {date}",
+    "backToCatalog": "Retour au catalogue",
+    "contactAbout": "Intéressé par ce véhicule ?",
+    "callUs": "Nous appeler",
+    "whatsapp": "WhatsApp",
+    "contactForm": "Formulaire de contact"
+  },
+  "vehicleTypes": {
+    "voiture": "Voiture",
+    "moto": "Moto",
+    "utilitaire": "Utilitaire",
+    "autre": "Autre"
+  },
+  "fuel": {
+    "essence": "Essence",
+    "diesel": "Diesel",
+    "hybride": "Hybride",
+    "electrique": "Électrique",
+    "gpl": "GPL",
+    "autre": "Autre"
+  },
+  "transmission": {
+    "manuelle": "Manuelle",
+    "automatique": "Automatique",
+    "semi-automatique": "Semi-auto"
+  },
+  "condition": {
+    "excellent": "Excellent état",
+    "bon": "Bon état",
+    "passable": "État passable",
+    "pieces": "Pour pièces"
+  },
+  "ct": {
+    "valide": "CT valide",
+    "a_passer": "CT à passer",
+    "non_requis": "CT non requis"
+  },
+  "filters": {
+    "title": "Filtres",
+    "reset": "Réinitialiser",
+    "apply": "Appliquer",
+    "search": "Rechercher",
+    "brand": "Marque",
+    "model": "Modèle",
+    "type": "Type",
+    "fuel": "Carburant",
+    "transmission": "Boîte",
+    "body": "Carrosserie",
+    "condition": "État",
+    "priceRange": "Prix",
+    "yearRange": "Année",
+    "maxMileage": "Kilométrage max",
+    "minYear": "Année min",
+    "maxYear": "Année max",
+    "minPrice": "Prix min",
+    "maxPrice": "Prix max",
+    "ctValid": "CT valide uniquement",
+    "allBrands": "Toutes les marques",
+    "allTypes": "Tous les types",
+    "allFuels": "Tous carburants",
+    "allTransmissions": "Toutes boîtes",
+    "allConditions": "Tous états",
+    "activeFilters": "{count} filtre(s) actif(s)",
+    "noResults": "Aucun véhicule trouvé",
+    "noResultsHint": "Essayez de modifier vos filtres",
+    "resultsCount": "{count} véhicule(s) trouvé(s)",
+    "modifyFilters": "Modifier les filtres"
+  },
+  "sort": {
+    "newest": "Plus récent",
+    "priceAsc": "Prix croissant",
+    "priceDesc": "Prix décroissant",
+    "kmAsc": "Kilométrage ↑",
+    "yearDesc": "Année récente",
+    "publishedDesc": "Plus récent"
+  },
+  "contact": {
+    "title": "Contactez-nous",
+    "subtitle": "Notre équipe vous répond sous 24h",
+    "description": "Notre équipe d'experts est disponible pour répondre à toutes vos questions et vous accompagner dans votre projet automobile.",
+    "firstName": "Prénom",
+    "lastName": "Nom",
+    "email": "Email",
+    "phone": "Téléphone",
+    "subject": "Objet",
+    "vehicleConcerned": "Véhicule concerné",
+    "message": "Message",
+    "gdprConsent": "J'accepte que mes données personnelles soient utilisées pour traiter ma demande. Conformément au RGPD, vous disposez d'un droit d'accès, de rectification et de suppression de vos données.",
+    "send": "Envoyer le message",
+    "sending": "Envoi en cours...",
+    "successTitle": "Message envoyé !",
+    "successMessage": "Nous vous répondrons dans les 24h.",
+    "errorMessage": "Une erreur est survenue. Veuillez réessayer.",
+    "backHome": "Retour à l'accueil",
+    "anotherMessage": "Envoyer un autre message",
+    "quickResponse": "Besoin d'une réponse rapide ?",
+    "whatsappCTA": "Contactez-nous directement par WhatsApp pour une réponse immédiate.",
+    "availability": "Disponibilité",
+    "availabilityHours": "Lun-Sam 9h-19h, Dim sur RDV",
+    "mapTitle": "Notre localisation",
+    "subjects": {
+      "vehicle_info": "Information sur un véhicule",
+      "trade_in": "Reprise de véhicule",
+      "pricing": "Demande de prix",
+      "other": "Autre"
+    },
+    "formTitle": "Envoyez-nous un message",
+    "formSubtitle": "Remplissez le formulaire ci-dessous, nous vous répondrons dans les plus brefs délais."
+  },
+  "vehicleSpecs": {
+    "brand": "Marque",
+    "model": "Modèle",
+    "version": "Version",
+    "year": "Année",
+    "type": "Type",
+    "fuel": "Carburant",
+    "engineSize": "Cylindrée",
+    "powerHp": "Puissance (ch)",
+    "powerKw": "Puissance (kW)",
+    "transmission": "Boîte de vitesses",
+    "drive": "Traction",
+    "body": "Carrosserie",
+    "doors": "Portes",
+    "seats": "Places",
+    "colorExt": "Couleur extérieure",
+    "colorInt": "Couleur intérieure",
+    "mileage": "Kilométrage",
+    "price": "Prix",
+    "negotiable": "Négociable",
+    "condition": "État général",
+    "ctStatus": "Contrôle technique",
+    "ctDate": "Date CT"
+  },
+  "features": {
+    "title": "Équipements & Options",
+    "security": "Sécurité",
+    "comfort": "Confort",
+    "multimedia": "Multimédia",
+    "exterior": "Extérieur",
+    "none": "Aucun équipement renseigné"
+  },
+  "footer": {
+    "tagline": "Achat — Vente — Reprise Automobile",
+    "quickLinks": "Liens rapides",
+    "contact": "Contact",
+    "legal": "Mentions légales",
+    "privacy": "Politique de confidentialité",
+    "allRights": "Tous droits réservés",
+    "description": "Votre expert en véhicules premium. Qualité, confiance et excellence depuis plus de 10 ans."
+  },
+  "meta": {
+    "homeTitle": "Auto Roi — Achat Vente Reprise Automobile",
+    "homeDescription": "Découvrez notre stock de plus de 100 véhicules toutes marques. Voitures, motos, utilitaires. Contact direct par WhatsApp.",
+    "catalogTitle": "Tous nos véhicules | Auto Roi",
+    "catalogDescription": "Parcourez notre catalogue de véhicules premium sélectionnés avec soin. Trouvez votre véhicule idéal chez Auto Roi.",
+    "contactTitle": "Nous contacter | Auto Roi",
+    "contactDescription": "Contactez Auto Roi pour toute question sur nos véhicules premium. Notre équipe vous répond sous 24h.",
+    "legalTitle": "Mentions légales | Auto Roi",
+    "privacyTitle": "Politique de confidentialité | Auto Roi"
+  },
+  "admin": {
+    "dashboard": "Tableau de bord",
+    "listings": "Annonces",
+    "newListing": "Nouvelle annonce",
+    "messages": "Messages",
+    "collaborators": "Collaborateurs",
+    "settings": "Paramètres",
+    "logout": "Déconnexion",
+    "welcome": "Bienvenue, {name}",
+    "role": {
+      "admin": "Administrateur",
+      "collaborateur": "Collaborateur"
+    }
+  },
+  "errors": {
+    "required": "Ce champ est obligatoire",
+    "invalidEmail": "Email invalide",
+    "minLength": "Minimum {count} caractères",
+    "maxLength": "Maximum {count} caractères",
+    "notFound": "Page introuvable",
+    "serverError": "Erreur serveur, réessayez",
+    "tooManyAttempts": "Trop de tentatives. Veuillez réessayer dans une heure."
+  },
+  "sections": {
+    "featured": {
+      "title": "SÉLECTION DU MOMENT",
+      "subtitle": "Nos véhicules coups de cœur",
+      "viewAll": "Voir tous les véhicules"
+    },
+    "categories": {
+      "title": "NOS CATÉGORIES",
+      "subtitle": "Parcourez par type de véhicule",
+      "available": "disponible(s)"
+    },
+    "whyChooseUs": {
+      "title": "POURQUOI CHOISIR",
+      "titleHighlight": "AUTO ROI",
+      "subtitle": "Nos avantages",
+      "features": {
+        "stock": {
+          "title": "Stock important",
+          "description": "Plus de 100 véhicules toutes marques disponibles immédiatement"
+        },
+        "photos": {
+          "title": "Photos HD",
+          "description": "Galeries complètes sans limite de photos pour chaque véhicule"
+        },
+        "international": {
+          "title": "Service international",
+          "description": "Site disponible en français et en anglais pour tous nos clients"
+        },
+        "contact": {
+          "title": "Contact direct",
+          "description": "WhatsApp, téléphone et formulaire pour une réponse rapide"
+        }
+      }
+    },
+    "latestArrivals": {
+      "title": "NOUVELLES ARRIVÉES",
+      "subtitle": "Derniers véhicules ajoutés",
+      "viewAll": "Voir toutes les nouveautés"
+    },
+    "contactCTA": {
+      "title": "UN VÉHICULE VOUS INTÉRESSE ?",
+      "subtitle": "Contactez-nous par WhatsApp, téléphone ou formulaire",
+      "buttons": {
+        "whatsapp": "WhatsApp",
+        "call": "Appeler",
+        "form": "Formulaire"
+      }
+    }
+  },
+  "location": {
+    "catalogue": {
+      "title": "Nos véhicules à louer",
+      "subtitle": "Réservez en ligne, payez l'acompte en toute sécurité",
+      "available": "disponible",
+      "from": "À partir de",
+      "perDay": "/jour",
+      "book": "Réserver",
+      "allTypes": "Tous",
+      "noResults": "Aucun véhicule trouvé",
+      "noResultsHint": "Modifiez vos filtres pour voir plus de véhicules"
+    },
+    "booking": {
+      "step1": "Dates",
+      "step2": "Options",
+      "step3": "Informations",
+      "step4": "Confirmation",
+      "startDate": "Date de départ",
+      "endDate": "Date de retour",
+      "duration": "{count} jour(s)",
+      "unavailable": "Indisponible",
+      "selected": "Sélectionné",
+      "range": "Période",
+      "selectStart": "Sélectionnez la date de départ",
+      "selectEnd": "Sélectionnez la date de retour",
+      "total": "Total TTC",
+      "deposit": "Acompte maintenant",
+      "balance": "Solde à la remise",
+      "payDeposit": "Payer l'acompte de {amount}",
+      "redirectStripe": "Vous allez être redirigé vers Stripe pour payer l'acompte de {deposit}. Le solde de {balance} sera réglé à la remise des clés.",
+      "cgv": "J'accepte les conditions générales de location et la politique de confidentialité.",
+      "included": "Inclus dans la location",
+      "noOptions": "Aucune option disponible",
+      "backToCatalog": "Retour au catalogue",
+      "cancelled": "Le paiement a été annulé. Vous pouvez réessayer.",
+      "bookingFor": "Je réserve pour une entreprise"
+    },
+    "confirmation": {
+      "title": "Acompte reçu ✓",
+      "subtitle": "Votre réservation est définitivement confirmée.",
+      "reference": "Référence de réservation",
+      "vehicle": "Véhicule loué",
+      "dates": "Dates",
+      "depositPaid": "Acompte payé",
+      "balanceDue": "Solde à régler le jour J",
+      "nextSteps": "Prochaines étapes",
+      "emailSent": "Un email de confirmation vient d'être envoyé à votre adresse.",
+      "contractSent": "Votre contrat de location vous sera transmis dans les prochaines heures.",
+      "showUp": "Rendez-vous le {date} pour récupérer votre véhicule.",
+      "backToRental": "Retour au catalogue location"
+    }
+  },
+  "common": {
+    "loading": "Chargement...",
+    "error": "Une erreur est survenue",
+    "retry": "Réessayer",
+    "close": "Fermer",
+    "seeMore": "Voir plus",
+    "seeAll": "Voir tout",
+    "new": "Nouveau",
+    "search": "Rechercher",
+    "filter": "Filtrer",
+    "reset": "Réinitialiser",
+    "apply": "Appliquer",
+    "cancel": "Annuler",
+    "save": "Enregistrer",
+    "delete": "Supprimer",
+    "edit": "Modifier",
+    "create": "Créer",
+    "confirm": "Confirmer",
+    "back": "Retour",
+    "next": "Suivant",
+    "previous": "Précédent",
+    "optional": "optionnel",
+    "required": "obligatoire",
+    "enabled": "Activé",
+    "disabled": "Désactivé",
+    "saving": "Sauvegarde...",
+    "saved": "Sauvegardé"
+  }
+}

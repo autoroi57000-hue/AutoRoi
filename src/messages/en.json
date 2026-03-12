@@ -1,0 +1,350 @@
+{
+  "nav": {
+    "home": "Home",
+    "vehicles": "Vehicles",
+    "rental": "Rental",
+    "contact": "Contact",
+    "allVehicles": "All vehicles",
+    "newListing": "New listing"
+  },
+  "hero": {
+    "title": "AUTO ROI",
+    "subtitle": "Purchase — Sale — Vehicle Trade-in",
+    "vehiclesAvailable": "{count} vehicles available",
+    "searchPlaceholder": "Search for a vehicle...",
+    "advancedSearch": "Advanced search",
+    "scrollDown": "Discover",
+    "stats": {
+      "vehiclesInStock": "Vehicles in stock",
+      "bilingualService": "Bilingual service",
+      "available": "Available"
+    }
+  },
+  "vehicle": {
+    "new": "NEW",
+    "sold": "SOLD",
+    "featured": "Featured",
+    "km": "{value} km",
+    "year": "Year {value}",
+    "negotiable": "Negotiable price",
+    "viewDetails": "View details",
+    "contactForVehicle": "I am interested in your {brand} {model} (ref: {ref})",
+    "similarVehicles": "Similar vehicles",
+    "noPhotos": "No photos available",
+    "shareVehicle": "Share this listing",
+    "copyLink": "Copy link",
+    "reportListing": "Report",
+    "viewCount": "{count} view(s)",
+    "publishedAt": "Published on {date}",
+    "backToCatalog": "Back to catalog",
+    "contactAbout": "Interested in this vehicle?",
+    "callUs": "Call us",
+    "whatsapp": "WhatsApp",
+    "contactForm": "Contact form"
+  },
+  "vehicleTypes": {
+    "voiture": "Car",
+    "moto": "Motorcycle",
+    "utilitaire": "Van",
+    "autre": "Other"
+  },
+  "fuel": {
+    "essence": "Gasoline",
+    "diesel": "Diesel",
+    "hybride": "Hybrid",
+    "electrique": "Electric",
+    "gpl": "LPG",
+    "autre": "Other"
+  },
+  "transmission": {
+    "manuelle": "Manual",
+    "automatique": "Automatic",
+    "semi-automatique": "Semi-auto"
+  },
+  "condition": {
+    "excellent": "Excellent condition",
+    "bon": "Good condition",
+    "passable": "Fair condition",
+    "pieces": "For parts"
+  },
+  "ct": {
+    "valide": "MOT valid",
+    "a_passer": "MOT due",
+    "non_requis": "MOT not required"
+  },
+  "filters": {
+    "title": "Filters",
+    "reset": "Reset",
+    "apply": "Apply",
+    "search": "Search",
+    "brand": "Brand",
+    "model": "Model",
+    "type": "Type",
+    "fuel": "Fuel",
+    "transmission": "Transmission",
+    "body": "Body type",
+    "condition": "Condition",
+    "priceRange": "Price",
+    "yearRange": "Year",
+    "maxMileage": "Max mileage",
+    "minYear": "Min year",
+    "maxYear": "Max year",
+    "minPrice": "Min price",
+    "maxPrice": "Max price",
+    "ctValid": "Valid MOT only",
+    "allBrands": "All brands",
+    "allTypes": "All types",
+    "allFuels": "All fuels",
+    "allTransmissions": "All transmissions",
+    "allConditions": "All conditions",
+    "activeFilters": "{count} active filter(s)",
+    "noResults": "No vehicles found",
+    "noResultsHint": "Try adjusting your filters",
+    "resultsCount": "{count} vehicle(s) found",
+    "modifyFilters": "Modify filters"
+  },
+  "sort": {
+    "newest": "Newest first",
+    "priceAsc": "Price: Low to high",
+    "priceDesc": "Price: High to low",
+    "kmAsc": "Mileage ↑",
+    "yearDesc": "Newest year",
+    "publishedDesc": "Recently added"
+  },
+  "contact": {
+    "title": "Contact Us",
+    "subtitle": "Our team will reply within 24 hours",
+    "description": "Our team of experts is available to answer all your questions and support you in your automotive project.",
+    "firstName": "First name",
+    "lastName": "Last name",
+    "email": "Email",
+    "phone": "Phone",
+    "subject": "Subject",
+    "vehicleConcerned": "Vehicle concerned",
+    "message": "Message",
+    "gdprConsent": "I agree that my personal data will be used to process my request. In accordance with GDPR, you have the right to access, rectify and delete your data.",
+    "send": "Send message",
+    "sending": "Sending...",
+    "successTitle": "Message sent!",
+    "successMessage": "We will get back to you within 24 hours.",
+    "errorMessage": "An error occurred. Please try again.",
+    "backHome": "Back to home",
+    "anotherMessage": "Send another message",
+    "quickResponse": "Need a quick answer?",
+    "whatsappCTA": "Contact us directly via WhatsApp for an immediate response.",
+    "availability": "Availability",
+    "availabilityHours": "Mon-Sat 9am-7pm, Sun by appointment",
+    "mapTitle": "Our location",
+    "subjects": {
+      "vehicle_info": "Vehicle information",
+      "trade_in": "Trade-in request",
+      "pricing": "Pricing request",
+      "other": "Other"
+    },
+    "formTitle": "Send us a message",
+    "formSubtitle": "Fill out the form below, we will get back to you as soon as possible."
+  },
+  "vehicleSpecs": {
+    "brand": "Brand",
+    "model": "Model",
+    "version": "Version",
+    "year": "Year",
+    "type": "Type",
+    "fuel": "Fuel",
+    "engineSize": "Engine size",
+    "powerHp": "Power (hp)",
+    "powerKw": "Power (kW)",
+    "transmission": "Transmission",
+    "drive": "Drive",
+    "body": "Body type",
+    "doors": "Doors",
+    "seats": "Seats",
+    "colorExt": "Exterior color",
+    "colorInt": "Interior color",
+    "mileage": "Mileage",
+    "price": "Price",
+    "negotiable": "Negotiable",
+    "condition": "General condition",
+    "ctStatus": "MOT status",
+    "ctDate": "MOT date"
+  },
+  "features": {
+    "title": "Features & Options",
+    "security": "Security",
+    "comfort": "Comfort",
+    "multimedia": "Multimedia",
+    "exterior": "Exterior",
+    "none": "No features listed"
+  },
+  "footer": {
+    "tagline": "Purchase — Sale — Vehicle Trade-in",
+    "quickLinks": "Quick links",
+    "contact": "Contact",
+    "legal": "Legal notices",
+    "privacy": "Privacy policy",
+    "allRights": "All rights reserved",
+    "description": "Your premium vehicle expert. Quality, trust and excellence for over 10 years."
+  },
+  "meta": {
+    "homeTitle": "Auto Roi — Purchase Sale Trade-in Vehicles",
+    "homeDescription": "Discover our stock of over 100 vehicles of all brands. Cars, motorcycles, vans. Direct contact via WhatsApp.",
+    "catalogTitle": "All our vehicles | Auto Roi",
+    "catalogDescription": "Browse our catalog of carefully selected premium vehicles. Find your ideal vehicle at Auto Roi.",
+    "contactTitle": "Contact us | Auto Roi",
+    "contactDescription": "Contact Auto Roi for any questions about our premium vehicles. Our team will reply within 24 hours.",
+    "legalTitle": "Legal notices | Auto Roi",
+    "privacyTitle": "Privacy policy | Auto Roi"
+  },
+  "admin": {
+    "dashboard": "Dashboard",
+    "listings": "Listings",
+    "newListing": "New listing",
+    "messages": "Messages",
+    "collaborators": "Collaborators",
+    "settings": "Settings",
+    "logout": "Logout",
+    "welcome": "Welcome, {name}",
+    "role": {
+      "admin": "Administrator",
+      "collaborateur": "Collaborator"
+    }
+  },
+  "errors": {
+    "required": "This field is required",
+    "invalidEmail": "Invalid email",
+    "minLength": "Minimum {count} characters",
+    "maxLength": "Maximum {count} characters",
+    "notFound": "Page not found",
+    "serverError": "Server error, please try again",
+    "tooManyAttempts": "Too many attempts. Please try again in an hour."
+  },
+  "sections": {
+    "featured": {
+      "title": "FEATURED SELECTION",
+      "subtitle": "Our favorite vehicles",
+      "viewAll": "View all vehicles"
+    },
+    "categories": {
+      "title": "OUR CATEGORIES",
+      "subtitle": "Browse by vehicle type",
+      "available": "available"
+    },
+    "whyChooseUs": {
+      "title": "WHY CHOOSE",
+      "titleHighlight": "AUTO ROI",
+      "subtitle": "Our advantages",
+      "features": {
+        "stock": {
+          "title": "Large inventory",
+          "description": "Over 100 vehicles of all brands available immediately"
+        },
+        "photos": {
+          "title": "HD Photos",
+          "description": "Complete galleries with unlimited photos for each vehicle"
+        },
+        "international": {
+          "title": "International service",
+          "description": "Website available in French and English for all our customers"
+        },
+        "contact": {
+          "title": "Direct contact",
+          "description": "WhatsApp, phone and form for a quick response"
+        }
+      }
+    },
+    "latestArrivals": {
+      "title": "NEW ARRIVALS",
+      "subtitle": "Recently added vehicles",
+      "viewAll": "View all new arrivals"
+    },
+    "contactCTA": {
+      "title": "INTERESTED IN A VEHICLE?",
+      "subtitle": "Contact us via WhatsApp, phone or form",
+      "buttons": {
+        "whatsapp": "WhatsApp",
+        "call": "Call",
+        "form": "Form"
+      }
+    }
+  },
+  "location": {
+    "catalogue": {
+      "title": "Vehicles for Rent",
+      "subtitle": "Book online, pay the deposit securely",
+      "available": "available",
+      "from": "From",
+      "perDay": "/day",
+      "book": "Book now",
+      "allTypes": "All",
+      "noResults": "No vehicles found",
+      "noResultsHint": "Adjust your filters to see more vehicles"
+    },
+    "booking": {
+      "step1": "Dates",
+      "step2": "Options",
+      "step3": "Details",
+      "step4": "Review",
+      "startDate": "Start date",
+      "endDate": "Return date",
+      "duration": "{count} day(s)",
+      "unavailable": "Unavailable",
+      "selected": "Selected",
+      "range": "Range",
+      "selectStart": "Select start date",
+      "selectEnd": "Select return date",
+      "total": "Total",
+      "deposit": "Deposit now",
+      "balance": "Balance at pickup",
+      "payDeposit": "Pay deposit of {amount}",
+      "redirectStripe": "You will be redirected to Stripe to pay the {deposit} deposit. The {balance} balance is due at key handover.",
+      "cgv": "I accept the rental terms and conditions and the privacy policy.",
+      "included": "Included in rental",
+      "noOptions": "No options available",
+      "backToCatalog": "Back to catalogue",
+      "cancelled": "Payment was cancelled. You can try again.",
+      "bookingFor": "Booking for a company"
+    },
+    "confirmation": {
+      "title": "Deposit received ✓",
+      "subtitle": "Your booking is definitively confirmed.",
+      "reference": "Booking reference",
+      "vehicle": "Rented vehicle",
+      "dates": "Dates",
+      "depositPaid": "Deposit paid",
+      "balanceDue": "Balance due on pickup",
+      "nextSteps": "What's next",
+      "emailSent": "A confirmation email has just been sent to your address.",
+      "contractSent": "Your rental contract will be sent to you within the next few hours.",
+      "showUp": "Show up on {date} to pick up your vehicle.",
+      "backToRental": "Back to rental catalogue"
+    }
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "An error occurred",
+    "retry": "Retry",
+    "close": "Close",
+    "seeMore": "See more",
+    "seeAll": "See all",
+    "new": "New",
+    "search": "Search",
+    "filter": "Filter",
+    "reset": "Reset",
+    "apply": "Apply",
+    "cancel": "Cancel",
+    "save": "Save",
+    "delete": "Delete",
+    "edit": "Edit",
+    "create": "Create",
+    "confirm": "Confirm",
+    "back": "Back",
+    "next": "Next",
+    "previous": "Previous",
+    "optional": "optional",
+    "required": "required",
+    "enabled": "Enabled",
+    "disabled": "Disabled",
+    "saving": "Saving...",
+    "saved": "Saved"
+  }
+}
