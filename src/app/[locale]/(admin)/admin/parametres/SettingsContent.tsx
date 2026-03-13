@@ -289,12 +289,12 @@ export function SettingsContent({ initialSettings }: SettingsContentProps) {
               />
 
               <SettingField
-                settingKey="address"
-                label="Adresse"
-                description="Adresse pour les mentions légales (optionnel)"
+                settingKey="business_address"
+                label="Adresse du garage"
+                description="Adresse physique affichée sur le site, le footer et la page contact"
                 type="textarea"
-                defaultValue={getValue("address", "")}
-                placeholder="123 Rue de Paris, 75000 Paris"
+                defaultValue={getValue("business_address", "")}
+                placeholder="43 Rue de Pontpierre, 57380 Faulquemont"
                 onSave={handleSettingChange}
               />
 
@@ -318,7 +318,7 @@ export function SettingsContent({ initialSettings }: SettingsContentProps) {
                       "email_notifications",
                       "email_sender_domain",
                       "whatsapp_default_message",
-                      "address",
+                      "business_address",
                       "opening_hours",
                     ])
                   }

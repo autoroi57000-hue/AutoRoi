@@ -265,24 +265,32 @@ export default async function ContactPage({ params }: ContactPageProps) {
                   </div>
                 </MountStagger>
 
-                {/* Map Placeholder */}
-                <Card className="overflow-hidden border-ar-gray/20">
-                  <CardContent className="p-0">
-                    <div className="relative aspect-video bg-ar-gray/10">
-                      <div className="absolute inset-0 flex flex-col items-center justify-center text-ar-silver">
-                        <MapPin className="mb-2 h-10 w-10 text-ar-gold" />
-                        <p className="font-medium">{t.mapTitle}</p>
-                        <p className="mt-1 text-sm">
-                          {locale === "fr"
-                            ? "Bientôt disponible"
-                            : "Coming soon"}
-                        </p>
+                {/* Map + Address */}
+                {settings.business_address && settings.business_address !== "France" && (
+                  <Card className="overflow-hidden border-ar-gray/20">
+                    <CardContent className="p-0">
+                      <div className="relative aspect-video">
+                        <iframe
+                          title={t.mapTitle}
+                          width="100%"
+                          height="100%"
+                          className="absolute inset-0 h-full w-full border-0"
+                          loading="lazy"
+                          referrerPolicy="no-referrer-when-downgrade"
+                          src="https://www.openstreetmap.org/export/embed.html?bbox=6.585,49.042,6.610,49.054&layer=mapnik&marker=49.0478,6.5954"
+                          allowFullScreen
+                        />
                       </div>
-                      {/* Overlay gradient */}
-                      <div className="absolute inset-0 bg-gradient-to-t from-ar-black/20 to-transparent" />
-                    </div>
-                  </CardContent>
-                </Card>
+                      <div className="flex items-center gap-3 p-4" style={{ background: 'rgba(255,255,255,0.03)', borderTop: '1px solid rgba(255,255,255,0.06)' }}>
+                        <MapPin className="h-4 w-4 shrink-0 text-ar-gold" />
+                        <div>
+                          <p className="text-sm font-medium text-white">{t.mapTitle}</p>
+                          <p className="text-xs text-ar-silver">{settings.business_address}</p>
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+                )}
 
                 {/* CTA Card */}
                 <Card className="border-ar-gold/30 bg-ar-gold/5">

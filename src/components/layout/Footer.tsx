@@ -215,7 +215,7 @@ export async function Footer({ locale }: FooterProps) {
                   </a>
                 </li>
               )}
-              {settings.business_address && settings.business_address !== "France" && (
+              {settings.business_address && (
                 <li className="inline-flex items-start gap-2 text-sm text-white/70">
                   <MapPin className="mt-0.5 h-3.5 w-3.5 shrink-0 text-[#C9A84C]/70" />
                   <span>{settings.business_address}</span>
