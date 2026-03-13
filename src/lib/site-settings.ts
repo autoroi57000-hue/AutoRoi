@@ -70,7 +70,7 @@ const DEFAULTS: SiteSettings = {
   email_sender_domain: "resend.dev",
   opening_hours: "Lun-Sam 9h-19h, Dim sur RDV",
   business_name: "Auto Roi",
-  business_address: "France",
+  business_address: "43 Rue de Pontpierre, 57380 Faulquemont",
   slogan_fr: "Votre partenaire automobile premium",
   slogan_en: "Your premium automotive partner",
   about_text_fr: "",

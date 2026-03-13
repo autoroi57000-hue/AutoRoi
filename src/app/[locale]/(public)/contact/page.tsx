@@ -266,7 +266,7 @@ export default async function ContactPage({ params }: ContactPageProps) {
                 </MountStagger>
 
                 {/* Map + Address */}
-                {settings.business_address && settings.business_address !== "France" && (
+                {settings.business_address && (
                   <Card className="overflow-hidden border-ar-gray/20">
                     <CardContent className="p-0">
                       <div className="relative aspect-video">
