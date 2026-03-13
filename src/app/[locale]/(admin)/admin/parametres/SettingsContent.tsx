@@ -269,6 +269,16 @@ export function SettingsContent({ initialSettings }: SettingsContentProps) {
               </div>
 
               <SettingField
+                settingKey="email_sender_domain"
+                label="Domaine d'envoi des emails"
+                description="Domaine vérifié dans Resend (ex: auto-roi.fr). Les emails partiront de noreply@ce-domaine. Laisser 'resend.dev' pour le mode sandbox."
+                type="text"
+                defaultValue={getValue("email_sender_domain", "resend.dev")}
+                placeholder="auto-roi.fr"
+                onSave={handleSettingChange}
+              />
+
+              <SettingField
                 settingKey="whatsapp_default_message"
                 label="Message WhatsApp par défaut"
                 description="Message pré-rempli quand un client clique sur WhatsApp"
@@ -306,6 +316,7 @@ export function SettingsContent({ initialSettings }: SettingsContentProps) {
                       "whatsapp_number",
                       "email_public",
                       "email_notifications",
+                      "email_sender_domain",
                       "whatsapp_default_message",
                       "address",
                       "opening_hours",
