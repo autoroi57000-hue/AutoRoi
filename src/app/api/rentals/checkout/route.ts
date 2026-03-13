@@ -1,13 +1,9 @@
 import { NextRequest, NextResponse } from "next/server"
-import Stripe from "stripe"
 import { z } from "zod"
+import { stripe } from "@/lib/stripe"
 import { createAdminClient } from "@/lib/supabase/server"
 import { SITE_URL, SITE_NAME } from "@/lib/constants"
 import type { Rental } from "@/types/rental"
-
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-  apiVersion: "2026-02-25.clover",
-})
 
 const bodySchema = z.object({
   rentalId: z.string().uuid("rentalId doit être un UUID valide"),

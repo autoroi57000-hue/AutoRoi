@@ -136,17 +136,17 @@ export async function Footer({ locale }: FooterProps) {
             >
               {settings.business_name}
             </Link>
-            <p className="mt-3 text-sm leading-relaxed text-white/50">
+            <p className="mt-3 text-sm leading-relaxed text-white/70">
               {t("description")}
             </p>
             {slogan && (
-              <p className="mt-2 text-xs text-[#C9A84C]/60">{slogan}</p>
+              <p className="mt-2 text-xs text-[#C9A84C]/80">{slogan}</p>
             )}
 
             {/* Social links */}
             {activeSocials.length > 0 && (
               <div className="mt-6">
-                <p className="mb-3 text-[10px] uppercase tracking-[0.2em] text-[#C9A84C]/50">
+                <p className="mb-3 text-[10px] uppercase tracking-[0.2em] text-[#C9A84C]/70">
                   {locale === "en" ? "Follow us" : "Suivez-nous"}
                 </p>
                 <div className="flex flex-wrap gap-2">
@@ -158,7 +158,7 @@ export async function Footer({ locale }: FooterProps) {
                       rel="noopener noreferrer"
                       aria-label={social.label}
                       title={social.label}
-                      className={`inline-flex h-10 w-10 items-center justify-center rounded-[10px] border border-white/[0.08] bg-white/[0.03] text-white/50 transition-all duration-250 ease-out hover:-translate-y-0.5 hover:shadow-lg ${social.hoverClass}`}
+                      className={`inline-flex h-10 w-10 items-center justify-center rounded-[10px] border border-white/[0.08] bg-white/[0.03] text-white/70 transition-all duration-250 ease-out hover:-translate-y-0.5 hover:shadow-lg ${social.hoverClass}`}
                     >
                       <social.icon />
                     </a>
@@ -170,15 +170,15 @@ export async function Footer({ locale }: FooterProps) {
 
           {/* ── Col 2: Quick Links ── */}
           <div>
-            <h4 className="text-xs font-semibold uppercase tracking-[0.15em] text-[#C9A84C]">
+            <p className="text-xs font-semibold uppercase tracking-[0.15em] text-[#C9A84C]" role="heading" aria-level={3}>
               {t("quickLinks")}
-            </h4>
+            </p>
             <ul className="mt-5 space-y-3">
               {quickLinks.map((link) => (
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-sm text-white/50 transition-colors hover:text-[#C9A84C]"
+                    className="text-sm text-white/70 transition-colors hover:text-[#C9A84C]"
                   >
                     {link.label}
                   </Link>
@@ -189,17 +189,17 @@ export async function Footer({ locale }: FooterProps) {
 
           {/* ── Col 3: Contact ── */}
           <div>
-            <h4 className="text-xs font-semibold uppercase tracking-[0.15em] text-[#C9A84C]">
+            <p className="text-xs font-semibold uppercase tracking-[0.15em] text-[#C9A84C]" role="heading" aria-level={3}>
               {t("contact")}
-            </h4>
+            </p>
             <ul className="mt-5 space-y-3">
               {settings.phone_number && (
                 <li>
                   <a
                     href={`tel:${settings.phone_number}`}
-                    className="inline-flex items-center gap-2 text-sm text-white/50 transition-colors hover:text-[#C9A84C]"
+                    className="inline-flex items-center gap-2 text-sm text-white/70 transition-colors hover:text-[#C9A84C]"
                   >
-                    <Phone className="h-3.5 w-3.5 text-[#C9A84C]/50" />
+                    <Phone className="h-3.5 w-3.5 text-[#C9A84C]/70" />
                     {settings.phone_number}
                   </a>
                 </li>
@@ -208,22 +208,22 @@ export async function Footer({ locale }: FooterProps) {
                 <li>
                   <a
                     href={`mailto:${settings.email_public}`}
-                    className="inline-flex items-center gap-2 text-sm text-white/50 transition-colors hover:text-[#C9A84C]"
+                    className="inline-flex items-center gap-2 text-sm text-white/70 transition-colors hover:text-[#C9A84C]"
                   >
-                    <Mail className="h-3.5 w-3.5 text-[#C9A84C]/50" />
+                    <Mail className="h-3.5 w-3.5 text-[#C9A84C]/70" />
                     {settings.email_public}
                   </a>
                 </li>
               )}
               {settings.business_address && settings.business_address !== "France" && (
-                <li className="inline-flex items-start gap-2 text-sm text-white/50">
-                  <MapPin className="mt-0.5 h-3.5 w-3.5 shrink-0 text-[#C9A84C]/50" />
+                <li className="inline-flex items-start gap-2 text-sm text-white/70">
+                  <MapPin className="mt-0.5 h-3.5 w-3.5 shrink-0 text-[#C9A84C]/70" />
                   <span>{settings.business_address}</span>
                 </li>
               )}
               {settings.opening_hours && (
-                <li className="inline-flex items-start gap-2 text-sm text-white/50">
-                  <Clock className="mt-0.5 h-3.5 w-3.5 shrink-0 text-[#C9A84C]/50" />
+                <li className="inline-flex items-start gap-2 text-sm text-white/70">
+                  <Clock className="mt-0.5 h-3.5 w-3.5 shrink-0 text-[#C9A84C]/70" />
                   <span className="whitespace-pre-line">
                     {settings.opening_hours}
                   </span>
@@ -234,15 +234,15 @@ export async function Footer({ locale }: FooterProps) {
 
           {/* ── Col 4: Legal + Language ── */}
           <div>
-            <h4 className="text-xs font-semibold uppercase tracking-[0.15em] text-[#C9A84C]">
+            <p className="text-xs font-semibold uppercase tracking-[0.15em] text-[#C9A84C]" role="heading" aria-level={3}>
               {locale === "en" ? "Information" : "Informations"}
-            </h4>
+            </p>
             <ul className="mt-5 space-y-3">
               {legalLinks.map((link) => (
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-sm text-white/50 transition-colors hover:text-[#C9A84C]"
+                    className="text-sm text-white/70 transition-colors hover:text-[#C9A84C]"
                   >
                     {link.label}
                   </Link>
@@ -252,7 +252,7 @@ export async function Footer({ locale }: FooterProps) {
 
             {/* Locale Switcher */}
             <div className="mt-8">
-              <p className="mb-3 text-[10px] uppercase tracking-[0.15em] text-white/30">
+              <p className="mb-3 text-[10px] uppercase tracking-[0.15em] text-white/60">
                 Language
               </p>
               <LocaleSwitcher />
@@ -265,11 +265,11 @@ export async function Footer({ locale }: FooterProps) {
 
         {/* ── Bottom bar ── */}
         <div className="flex flex-col items-center justify-between gap-4 md:flex-row">
-          <p className="text-xs text-white/25">
+          <p className="text-xs text-white/60">
             &copy; {currentYear} {settings.business_name}. {t("allRights")}
           </p>
           {slogan && (
-            <p className="text-xs text-[#C9A84C]/30">{slogan}</p>
+            <p className="text-xs text-[#C9A84C]/60">{slogan}</p>
           )}
         </div>
       </div>

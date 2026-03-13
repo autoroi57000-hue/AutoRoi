@@ -41,6 +41,15 @@ export async function createActionClient() {
   )
 }
 
+// Cookieless client for use inside unstable_cache (cookies() is not allowed there).
+// Safe for public read-only queries that don't need user session.
+export function createAnonClient() {
+  return createSupabaseAdminClient<Database>(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+  )
+}
+
 // Use for admin operations (bypasses RLS) — only in trusted server contexts
 export function createAdminClient() {
   return createSupabaseAdminClient<Database>(

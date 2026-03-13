@@ -14,7 +14,10 @@ Sentry.init({
   replaysSessionSampleRate: 0.1,
   replaysOnErrorSampleRate: 1.0,
 
-  integrations: [Sentry.replayIntegration()],
+  integrations:
+    process.env.NODE_ENV === "production"
+      ? [Sentry.replayIntegration()]
+      : [],
 
   // Enable logs
   enableLogs: true,

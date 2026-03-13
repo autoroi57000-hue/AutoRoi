@@ -228,7 +228,7 @@ export async function createRentalReservation(
   }
 
   // 8. Créer la Stripe Checkout Session
-  const siteUrl = SITE_URL ?? "http://localhost:3000"
+  const siteUrl = SITE_URL ?? "https://autoroi.fr"
   let stripeUrl: string
 
   try {

@@ -223,6 +223,7 @@ export function LatestArrivalsSection({
                             alt={`${vehicle.brand} ${vehicle.model} ${vehicle.year}`}
                             fill
                             loading="lazy"
+                            quality={75}
                             className="arrival-card-img object-cover"
                             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                           />

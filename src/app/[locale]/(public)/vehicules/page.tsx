@@ -23,12 +23,29 @@ interface VehiclesPageProps {
 
 export async function generateMetadata({ params }: VehiclesPageProps): Promise<Metadata> {
   const { locale } = params
+  const title = locale === "en" ? "Our Catalogue — Auto Roi" : "Notre Catalogue — Auto Roi"
+  const description =
+    locale === "en"
+      ? "Browse our carefully selected premium vehicles. Find your ideal vehicle at Auto Roi."
+      : "Parcourez notre catalogue de véhicules premium sélectionnés avec soin. Trouvez votre véhicule idéal chez Auto Roi."
+
   return {
-    title: locale === "en" ? "Our Catalogue — Auto Roi" : "Notre Catalogue — Auto Roi",
-    description:
-      locale === "en"
-        ? "Browse our carefully selected premium vehicles. Find your ideal vehicle at Auto Roi."
-        : "Parcourez notre catalogue de véhicules premium sélectionnés avec soin. Trouvez votre véhicule idéal chez Auto Roi.",
+    title,
+    description,
+    alternates: {
+      canonical: `/${locale}/vehicules`,
+      languages: {
+        fr: "/fr/vehicules",
+        en: "/en/vehicules",
+        "x-default": "/fr/vehicules",
+      },
+    },
+    openGraph: {
+      title,
+      description,
+      type: "website",
+      url: `/${locale}/vehicules`,
+    },
   }
 }
 

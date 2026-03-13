@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import { motion, useScroll, useTransform, useReducedMotion } from "framer-motion";
 import { ChevronDown } from "lucide-react";
+import Link from "next/link";
 import { QuickSearchBar } from "@/components/search/QuickSearchBar";
 import { createClient } from "@/lib/supabase/client";
 
@@ -78,13 +79,25 @@ export function HeroSection({ locale = "fr", brands = [] }: HeroSectionProps) {
   const texts = {
     fr: {
       title: "AUTO ROI",
-      subtitle: "Achat — Vente — Reprise Automobile",
+      services: [
+        { label: "Achat", href: `/${locale}/vehicules` },
+        { label: "Vente", href: `/${locale}/vehicules` },
+        { label: "Reprise", href: `/${locale}/contact` },
+        { label: "Location", href: `/${locale}/location` },
+      ],
+      suffix: "Automobile",
       vehiclesAvailable: "véhicules disponibles",
       scrollDown: "Découvrir",
     },
     en: {
       title: "AUTO ROI",
-      subtitle: "Purchase — Sale — Vehicle Trade-in",
+      services: [
+        { label: "Purchase", href: `/${locale}/vehicules` },
+        { label: "Sale", href: `/${locale}/vehicules` },
+        { label: "Trade-in", href: `/${locale}/contact` },
+        { label: "Rental", href: `/${locale}/location` },
+      ],
+      suffix: "Vehicle",
       vehiclesAvailable: "vehicles available",
       scrollDown: "Discover",
     },
@@ -115,7 +128,7 @@ export function HeroSection({ locale = "fr", brands = [] }: HeroSectionProps) {
           fill
           className="object-cover"
           priority
-          quality={90}
+          quality={75}
           sizes="100vw"
         />
         {/* Gradient overlay from bottom to top */}
@@ -153,9 +166,22 @@ export function HeroSection({ locale = "fr", brands = [] }: HeroSectionProps) {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6 }}
-            className="mt-4 text-sm font-light tracking-[0.2em] text-ar-silver sm:text-base md:text-lg"
+            className="mt-4 flex flex-wrap items-center justify-center gap-x-1 text-sm font-light tracking-[0.2em] text-ar-silver sm:text-base md:text-lg"
           >
-            {t.subtitle}
+            {t.services.map((s, i) => (
+              <span key={s.label} className="inline-flex items-center">
+                <Link
+                  href={s.href}
+                  className="transition-colors hover:text-ar-gold"
+                >
+                  {s.label}
+                </Link>
+                {i < t.services.length - 1 && (
+                  <span className="mx-1.5 sm:mx-2">&mdash;</span>
+                )}
+              </span>
+            ))}
+            <span className="ml-1">{t.suffix}</span>
           </motion.p>
 
           {/* Gold decorative line */}

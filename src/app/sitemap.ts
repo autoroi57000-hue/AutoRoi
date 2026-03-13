@@ -1,5 +1,5 @@
 import { MetadataRoute } from "next"
-import { createClient } from "@/lib/supabase/server"
+import { createAnonClient } from "@/lib/supabase/server"
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://autoroi.fr"
@@ -27,7 +27,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // ── Véhicules de vente (table vehicles) ──────────────────────────
   let vehicleEntries: MetadataRoute.Sitemap = []
   try {
-    const supabase = await createClient()
+    const supabase = createAnonClient()
     const { data } = await supabase
       .from("vehicles")
       .select("slug, updated_at")
@@ -53,7 +53,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // ── Véhicules de location (table rental_vehicles) ────────────────
   let rentalEntries: MetadataRoute.Sitemap = []
   try {
-    const supabase = await createClient()
+    const supabase = createAnonClient()
     // rental_vehicles n'est pas dans le type Database → cast via any
     const { data } = await (supabase as any)
       .from("rental_vehicles")

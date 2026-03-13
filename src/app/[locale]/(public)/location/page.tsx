@@ -28,14 +28,32 @@ function getNumber(val: string | string[] | undefined): number | undefined {
 // ─── Metadata ─────────────────────────────────────────────────────────────────
 
 export async function generateMetadata({ params }: LocationPageProps): Promise<Metadata> {
-  const isFr = params.locale !== "en"
+  const { locale } = params
+  const isFr = locale !== "en"
+  const title = isFr
+    ? `Location de véhicules — ${SITE_NAME}`
+    : `Vehicle Rental — ${SITE_NAME}`
+  const description = isFr
+    ? "Louez votre véhicule idéal parmi notre flotte premium. Réservation en ligne, paiement sécurisé."
+    : "Rent your ideal vehicle from our premium fleet. Online booking, secure payment."
+
   return {
-    title: isFr
-      ? `Location de véhicules — ${SITE_NAME}`
-      : `Vehicle Rental — ${SITE_NAME}`,
-    description: isFr
-      ? "Louez votre véhicule idéal parmi notre flotte premium. Réservation en ligne, paiement sécurisé."
-      : "Rent your ideal vehicle from our premium fleet. Online booking, secure payment.",
+    title,
+    description,
+    alternates: {
+      canonical: `/${locale}/location`,
+      languages: {
+        fr: "/fr/location",
+        en: "/en/location",
+        "x-default": "/fr/location",
+      },
+    },
+    openGraph: {
+      title,
+      description,
+      type: "website",
+      url: `/${locale}/location`,
+    },
   }
 }
 

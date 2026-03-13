@@ -1,14 +1,11 @@
 import * as Sentry from "@sentry/nextjs"
 import { NextRequest, NextResponse } from "next/server"
-import Stripe from "stripe"
+import type Stripe from "stripe"
+import { stripe, getWebhookSecret } from "@/lib/stripe"
 import { createAdminClient } from "@/lib/supabase/server"
 import { sendRentalEmail } from "@/lib/rental-emails"
 import { generateRentalContract } from "@/lib/rental-contract"
 import type { Rental } from "@/types/rental"
-
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-  apiVersion: "2026-02-25.clover",
-})
 
 // IMPORTANT : En App Router, on utilise request.text() directement.
 // Pas de config bodyParser à désactiver (contrairement aux Pages Routes).
@@ -27,7 +24,7 @@ export async function POST(request: NextRequest) {
     event = stripe.webhooks.constructEvent(
       body,
       signature,
-      process.env.STRIPE_WEBHOOK_SECRET!
+      getWebhookSecret()
     )
   } catch (err) {
     const message = err instanceof Error ? err.message : "Signature invalide"

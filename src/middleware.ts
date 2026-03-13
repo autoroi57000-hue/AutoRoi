@@ -11,6 +11,14 @@ const intlMiddleware = createMiddleware({
   localePrefix: 'always',
 })
 
+/** Fichiers statiques PWA — ne jamais préfixer avec i18n */
+const PWA_FILES = [
+  '/manifest.json',
+  '/sw.js',
+  '/register-sw.js',
+  '/offline.html',
+]
+
 /** Routes nécessitant une authentification */
 const AUTH_PATHS = ['/admin']
 
@@ -32,6 +40,16 @@ function getLocaleFromPath(pathname: string): string {
 
 export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl
+
+  // ─── Fichiers statiques PWA — exclure du routage i18n ─────────────────────
+  if (
+    PWA_FILES.includes(pathname) ||
+    pathname.startsWith('/icons/') ||
+    pathname.startsWith('/_next/') ||
+    pathname.startsWith('/favicon')
+  ) {
+    return NextResponse.next()
+  }
 
   // ─── Routes protégées /[locale]/admin/** ──────────────────────────────────
   if (isAuthPath(pathname)) {
@@ -79,6 +97,6 @@ export async function middleware(request: NextRequest) {
 
 export const config = {
   matcher: [
-    '/((?!_next/static|_next/image|favicon.ico|api|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)',
+    '/((?!_next/static|_next/image|favicon.ico|api|monitoring|manifest\\.json|sw\\.js|register-sw\\.js|offline\\.html|icons/|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)',
   ],
 }

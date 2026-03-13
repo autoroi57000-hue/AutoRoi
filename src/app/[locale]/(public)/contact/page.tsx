@@ -45,6 +45,7 @@ export async function generateMetadata({
       languages: {
         fr: "/fr/contact",
         en: "/en/contact",
+        "x-default": "/fr/contact",
       },
     },
   };

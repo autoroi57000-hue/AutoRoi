@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /fr/admin/
+Disallow: /en/admin/
+Disallow: /api/
+
+Sitemap: https://autoroi.fr/sitemap.xml

@@ -1,15 +1,11 @@
 import { redirect } from "next/navigation"
 import Link from "next/link"
-import Stripe from "stripe"
+import { stripe } from "@/lib/stripe"
 import { createAdminClient } from "@/lib/supabase/server"
 import { formatPrice } from "@/lib/utils"
 import { SITE_NAME } from "@/lib/constants"
 import { CheckCircle2, Calendar, Car, CreditCard, ChevronRight, Home } from "lucide-react"
 import type { Rental } from "@/types/rental"
-
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-  apiVersion: "2026-02-25.clover",
-})
 
 interface PageProps {
   params: { locale: string }
