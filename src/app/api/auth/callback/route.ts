@@ -6,17 +6,17 @@ import type { Database } from "@/types/database"
  * Auth callback route — exchanges the Supabase auth code for a session.
  * Used after clicking the invitation link or password reset link in emails.
  *
- * Flow: Supabase email link → /api/auth/callback?code=...&next=/fr/set-password
- *       → exchanges code → redirects to `next` param (or /fr/login as fallback)
+ * Flow: Supabase email link → /api/auth/callback?code=...&next=/set-password
+ *       → exchanges code → redirects to `next` param (or /login as fallback)
  */
 export async function GET(request: NextRequest) {
   const { searchParams, origin } = request.nextUrl
   const code = searchParams.get("code")
-  const next = searchParams.get("next") || "/fr/login"
+  const next = searchParams.get("next") || "/login"
 
   if (!code) {
     // No code — redirect to login with error
-    return NextResponse.redirect(new URL("/fr/login?error=missing_code", origin))
+    return NextResponse.redirect(new URL("/login?error=missing_code", origin))
   }
 
   const response = NextResponse.redirect(new URL(next, origin))
@@ -43,7 +43,7 @@ export async function GET(request: NextRequest) {
   if (error) {
     console.error("Auth callback error:", error.message)
     return NextResponse.redirect(
-      new URL("/fr/login?error=callback_failed", origin)
+      new URL("/login?error=callback_failed", origin)
     )
   }
 

@@ -17,7 +17,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   const staticEntries: MetadataRoute.Sitemap = staticRoutes.flatMap((route) =>
     locales.map((locale) => ({
-      url: `${baseUrl}/${locale}${route.path}`,
+      url: locale === "fr"
+        ? `${baseUrl}${route.path || "/"}`
+        : `${baseUrl}/${locale}${route.path}`,
       lastModified: new Date(),
       changeFrequency: route.changeFrequency,
       priority: route.priority,
@@ -39,7 +41,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         .filter((v) => v.slug)
         .flatMap((v) =>
           locales.map((locale) => ({
-            url: `${baseUrl}/${locale}/vehicules/${v.slug}`,
+            url: locale === "fr"
+              ? `${baseUrl}/vehicules/${v.slug}`
+              : `${baseUrl}/${locale}/vehicules/${v.slug}`,
             lastModified: new Date(v.updated_at),
             changeFrequency: "weekly" as const,
             priority: 0.8,
@@ -66,7 +70,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         .filter((v: { slug: string | null }) => v.slug)
         .flatMap((v: { slug: string | null; updated_at: string }) =>
           locales.map((locale) => ({
-            url: `${baseUrl}/${locale}/location/${v.slug}`,
+            url: locale === "fr"
+              ? `${baseUrl}/location/${v.slug}`
+              : `${baseUrl}/${locale}/location/${v.slug}`,
             lastModified: new Date(v.updated_at),
             changeFrequency: "weekly" as const,
             priority: 0.8,

@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { useSearchParams } from 'next/navigation'
 import { Lock, Mail, AlertCircle, CheckCircle2 } from 'lucide-react'
 import { loginAction, type ActionResult } from '../actions'
+import { localePath } from '@/lib/constants'
 
 interface LoginPageProps {
   params: { locale: string }
@@ -137,7 +138,7 @@ export default function LoginPage({ params }: LoginPageProps) {
             {/* Forgot password */}
             <div className="text-right">
               <Link
-                href={`/${locale}/forgot-password`}
+                href={`${localePath(locale, '/forgot-password')}`}
                 className="text-xs font-medium transition-all hover:underline"
                 style={{ color: 'rgba(201,168,76,0.55)' }}
               >

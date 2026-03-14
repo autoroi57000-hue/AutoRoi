@@ -4,11 +4,14 @@ import { useCallback, useTransition } from "react"
 import { useRouter, useSearchParams, usePathname } from "next/navigation"
 import { LayoutGrid, List } from "lucide-react"
 import type { VehicleSortKey } from "@/types/vehicle"
+import type { FiltersData } from "@/lib/vehicles"
+import { MobileFilterButton } from "@/components/vehicle/VehicleFilters"
 
 interface CatalogToolbarProps {
   total: number
   currentPage: number
   perPage: number
+  filtersData?: FiltersData
 }
 
 const SORT_OPTIONS: { value: VehicleSortKey | ""; label: string }[] = [
@@ -20,7 +23,7 @@ const SORT_OPTIONS: { value: VehicleSortKey | ""; label: string }[] = [
   { value: "mileage_asc", label: "Km le moins élevé" },
 ]
 
-export function CatalogToolbar({ total, currentPage, perPage }: CatalogToolbarProps) {
+export function CatalogToolbar({ total, currentPage, perPage, filtersData }: CatalogToolbarProps) {
   const router = useRouter()
   const pathname = usePathname()
   const searchParams = useSearchParams()
@@ -49,19 +52,22 @@ export function CatalogToolbar({ total, currentPage, perPage }: CatalogToolbarPr
 
   return (
     <div className="flex flex-wrap items-center justify-between gap-3 rounded-xl px-4 py-3" style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.07)' }}>
-      {/* Result count */}
-      <p className="text-sm" style={{ color: 'rgba(255,255,255,0.45)' }}>
-        {total === 0 ? (
-          "Aucun résultat"
-        ) : (
-          <>
-            <span className="font-semibold text-white">{from}–{to}</span>
-            {" "}sur{" "}
-            <span className="font-semibold text-white">{total}</span>
-            {" "}véhicule{total > 1 ? "s" : ""}
-          </>
-        )}
-      </p>
+      {/* Mobile filter button + Result count */}
+      <div className="flex items-center gap-3">
+        {filtersData && <MobileFilterButton filtersData={filtersData} />}
+        <p className="text-sm" style={{ color: 'rgba(255,255,255,0.45)' }}>
+          {total === 0 ? (
+            "Aucun résultat"
+          ) : (
+            <>
+              <span className="font-semibold text-white">{from}–{to}</span>
+              {" "}sur{" "}
+              <span className="font-semibold text-white">{total}</span>
+              {" "}véhicule{total > 1 ? "s" : ""}
+            </>
+          )}
+        </p>
+      </div>
 
       <div className="flex items-center gap-3">
         {/* Sort */}

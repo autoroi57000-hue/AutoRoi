@@ -3,7 +3,7 @@ import Link from "next/link"
 import { KeyRound, Users, Zap, Filter, Search } from "lucide-react"
 import { getRentalVehicles } from "@/lib/rentals"
 import type { RentalVehicle } from "@/types/rental"
-import { SITE_NAME } from "@/lib/constants"
+import { SITE_NAME, localePath} from '@/lib/constants'
 import { AnimatedGrid } from "@/components/ui/AnimatedGrid"
 
 // ─── Types ────────────────────────────────────────────────────────────────────
@@ -41,18 +41,18 @@ export async function generateMetadata({ params }: LocationPageProps): Promise<M
     title,
     description,
     alternates: {
-      canonical: `/${locale}/location`,
+      canonical: locale === "fr" ? "/location" : `${localePath(locale, '/location')}`,
       languages: {
-        fr: "/fr/location",
+        fr: "/location",
         en: "/en/location",
-        "x-default": "/fr/location",
+        "x-default": "/location",
       },
     },
     openGraph: {
       title,
       description,
       type: "website",
-      url: `/${locale}/location`,
+      url: `${localePath(locale, '/location')}`,
     },
   }
 }
@@ -110,7 +110,7 @@ export default async function LocationPage({ params, searchParams }: LocationPag
       if (v !== undefined && v !== "") params.set(k, String(v))
     }
     const qs = params.toString()
-    return `/${locale}/location${qs ? `?${qs}` : ""}`
+    return `${localePath(locale, '/location')}${qs ? `?${qs}` : ""}`
   }
 
   const activeFiltersCount = [filters.vehicle_type, filters.fuel, filters.seats, prixMin, prixMax].filter(Boolean).length
@@ -236,7 +236,7 @@ export default async function LocationPage({ params, searchParams }: LocationPag
 
             {activeFiltersCount > 0 && (
               <Link
-                href={`/${locale}/location`}
+                href={`${localePath(locale, '/location')}`}
                 className="text-xs transition-colors"
                 style={{ color: "rgba(255,255,255,0.35)" }}
               >
@@ -274,7 +274,7 @@ function RentalVehicleCard({
   locale: string
   isFr: boolean
 }) {
-  const href = `/${locale}/location/${vehicle.slug}`
+  const href = `${localePath(locale, `/location/${vehicle.slug}`)}`
 
   return (
     <Link
@@ -431,7 +431,7 @@ function EmptyState({ locale, isFr }: { locale: string; isFr: boolean }) {
           : "No vehicle matches your criteria. Try adjusting your filters."}
       </p>
       <Link
-        href={`/${locale}/location`}
+        href={`${localePath(locale, '/location')}`}
         className="px-6 py-2.5 rounded-xl text-ar-black font-semibold text-sm transition-colors hover:brightness-110"
         style={{ background: "#C9A84C" }}
       >

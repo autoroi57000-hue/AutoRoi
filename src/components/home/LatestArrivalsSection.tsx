@@ -7,7 +7,7 @@ import { motion, useInView } from "framer-motion";
 import { ArrowRight, Sparkles, Calendar, Gauge, Fuel } from "lucide-react";
 import type { VehicleCard as VehicleCardType } from "@/types/vehicle";
 import { formatPrice, formatMileage } from "@/lib/utils";
-import { FUEL_LABELS } from "@/lib/constants";
+import { FUEL_LABELS, localePath} from '@/lib/constants';
 
 interface LatestArrivalsSectionProps {
   locale?: string;
@@ -190,7 +190,7 @@ export function LatestArrivalsSection({
                   }}
                 >
                   <Link
-                    href={`/${locale}/vehicules/${vehicle.slug}`}
+                    href={`${localePath(locale, `/vehicules/${vehicle.slug}`)}`}
                     className="block"
                     tabIndex={0}
                   >
@@ -460,7 +460,7 @@ export function LatestArrivalsSection({
               transition={{ duration: 0.6, delay: 0.5 }}
               className="mt-12 text-center"
             >
-              <Link href={`/${locale}/vehicules`}>
+              <Link href={`${localePath(locale, '/vehicules')}`}>
                 <motion.span
                   className="group inline-flex cursor-pointer items-center gap-2"
                   style={{
@@ -524,7 +524,7 @@ export function LatestArrivalsSection({
               {t.noVehiclesSub}
             </p>
             <Link
-              href={`/${locale}/vehicules`}
+              href={`${localePath(locale, '/vehicules')}`}
               className="mt-6 inline-flex items-center gap-2"
               style={{
                 border: "1px solid rgba(201,168,76,0.35)",

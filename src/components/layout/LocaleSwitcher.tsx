@@ -3,6 +3,7 @@
 import { usePathname, useRouter } from "next/navigation";
 import { useParams } from "next/navigation";
 import { cn } from "@/lib/utils";
+import { DEFAULT_LOCALE, localePath } from "@/lib/constants";
 
 interface LocaleSwitcherProps {
   className?: string;
@@ -22,8 +23,14 @@ export function LocaleSwitcher({ className }: LocaleSwitcherProps) {
   const switchLocale = (newLocale: string) => {
     if (newLocale === currentLocale) return;
 
-    // Replace the locale in the pathname
-    const newPathname = pathname.replace(`/${currentLocale}`, `/${newLocale}`);
+    // Extract the path without the current locale prefix
+    let pathWithoutLocale = pathname;
+    if (currentLocale !== DEFAULT_LOCALE) {
+      // Current locale has a prefix (e.g. /en/vehicules → /vehicules)
+      pathWithoutLocale = pathname.replace(`/${currentLocale}`, "") || "/";
+    }
+    // Build new path with the target locale
+    const newPathname = localePath(newLocale, pathWithoutLocale === "/" ? "" : pathWithoutLocale);
     router.push(newPathname);
   };
 

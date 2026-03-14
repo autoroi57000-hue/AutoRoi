@@ -4,6 +4,7 @@ import { useState, useTransition } from 'react'
 import Link from 'next/link'
 import { Mail, Loader2, AlertCircle, CheckCircle2, ArrowLeft } from 'lucide-react'
 import { forgotPasswordAction, type ActionResult } from '../actions'
+import { localePath } from '@/lib/constants'
 
 interface ForgotPasswordPageProps {
   params: { locale: string }
@@ -43,7 +44,7 @@ export default function ForgotPasswordPage({ params }: ForgotPasswordPageProps) 
               <p>{result.message}</p>
             </div>
             <Link
-              href={`/${locale}/login`}
+              href={`${localePath(locale, '/login')}`}
               className="flex w-full items-center justify-center gap-2 rounded-lg border border-ar-gray py-3 text-sm text-ar-silver transition-colors hover:border-ar-gold hover:text-ar-gold"
             >
               <ArrowLeft className="h-4 w-4" />
@@ -96,7 +97,7 @@ export default function ForgotPasswordPage({ params }: ForgotPasswordPageProps) 
             </button>
 
             <Link
-              href={`/${locale}/login`}
+              href={`${localePath(locale, '/login')}`}
               className="flex items-center justify-center gap-2 text-sm text-ar-silver/50 transition-colors hover:text-ar-gold"
             >
               <ArrowLeft className="h-3 w-3" />

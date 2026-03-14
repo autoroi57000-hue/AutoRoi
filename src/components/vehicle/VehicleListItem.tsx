@@ -5,7 +5,7 @@ import Image from "next/image"
 import { Calendar, Gauge, Fuel, Zap, ArrowRight } from "lucide-react"
 import type { VehicleCard } from "@/types/vehicle"
 import { formatPrice, formatMileage } from "@/lib/utils"
-import { FUEL_LABELS, TRANSMISSION_LABELS, VEHICLE_STATUS_LABELS } from "@/lib/constants"
+import { FUEL_LABELS, TRANSMISSION_LABELS, VEHICLE_STATUS_LABELS, localePath} from '@/lib/constants'
 
 interface VehicleListItemProps {
   vehicle: VehicleCard
@@ -19,7 +19,7 @@ export function VehicleListItem({ vehicle, locale = "fr" }: VehicleListItemProps
     new Date(vehicle.published_at) > new Date(Date.now() - 7 * 24 * 60 * 60 * 1000)
 
   return (
-    <Link href={`/${locale}/vehicules/${vehicle.slug}`}>
+    <Link href={`${localePath(locale, `/vehicules/${vehicle.slug}`)}`}>
       <article className="group flex gap-4 rounded-xl bg-white border border-gray-100 overflow-hidden shadow-sm hover:shadow-lg hover:border-ar-gold/30 transition-all duration-300 p-0">
         {/* Photo */}
         <div className="relative w-[200px] shrink-0 overflow-hidden bg-ar-gray/10">

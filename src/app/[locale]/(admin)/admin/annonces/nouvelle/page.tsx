@@ -5,6 +5,7 @@ import { ChevronRight, PlusCircle, ArrowLeft } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { createClient } from "@/lib/supabase/server"
 import { VehicleForm } from "@/components/admin/VehicleForm"
+import { localePath } from '@/lib/constants'
 
 interface NouvelleAnnoncePageProps {
   params: { locale: string }
@@ -22,7 +23,7 @@ export default async function NouvelleAnnoncePage({
   } = await supabase.auth.getUser()
 
   if (!user) {
-    redirect(`/${locale}/login`)
+    redirect(`${localePath(locale, '/login')}`)
   }
 
   // Vérifier le profil et les droits
@@ -34,7 +35,7 @@ export default async function NouvelleAnnoncePage({
 
   const userRole = (profile as { role: string } | null)?.role
   if (!userRole || (userRole !== "admin" && userRole !== "collaborateur")) {
-    redirect(`/${locale}/admin`)
+    redirect(`${localePath(locale, '/admin')}`)
   }
 
   return (
@@ -45,14 +46,14 @@ export default async function NouvelleAnnoncePage({
           {/* Breadcrumb */}
           <nav className="flex items-center text-xs mb-3 text-gray-500">
             <Link 
-              href={`/${locale}/admin`} 
+              href={`${localePath(locale, '/admin')}`} 
               className="hover:text-ar-gold transition-colors"
             >
               Admin
             </Link>
             <ChevronRight className="h-3 w-3 mx-2 text-ar-gold/30" />
             <Link
-              href={`/${locale}/admin/annonces`}
+              href={`${localePath(locale, '/admin/annonces')}`}
               className="hover:text-ar-gold transition-colors"
             >
               Annonces
@@ -79,7 +80,7 @@ export default async function NouvelleAnnoncePage({
             </div>
             
             {/* ===== BOUTON RETOUR STYLE 2027 ===== */}
-            <Link href={`/${locale}/admin/annonces`}>
+            <Link href={`${localePath(locale, '/admin/annonces')}`}>
               <Button 
                 variant="outline" 
                 size="sm"

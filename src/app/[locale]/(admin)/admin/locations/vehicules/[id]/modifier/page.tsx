@@ -34,6 +34,7 @@ const PhotoUploader = dynamic(
   { ssr: false, loading: () => <div className="h-48 animate-pulse rounded-lg bg-muted" /> }
 )
 import { toast } from "@/hooks/use-toast"
+import { localePath } from '@/lib/constants'
 
 interface ModifierVehiculePageProps {
   params: { locale: string; id: string }
@@ -213,7 +214,7 @@ export default function ModifierVehiculePage({ params }: ModifierVehiculePagePro
         setPricingTiers(Array.isArray(v.pricing_tiers) ? v.pricing_tiers : [])
       } else {
         toast({ title: "Erreur", description: "Véhicule introuvable", variant: "destructive" })
-        router.push(`/${locale}/admin/locations/vehicules`)
+        router.push(`${localePath(locale, '/admin/locations/vehicules')}`)
       }
       setPageLoading(false)
     })
@@ -288,9 +289,9 @@ export default function ModifierVehiculePage({ params }: ModifierVehiculePagePro
       {/* Header sticky */}
       <div className="sticky top-0 z-40 -mx-4 lg:-mx-6 -mt-4 lg:-mt-6 px-4 lg:px-6 pt-4 lg:pt-6 pb-4 bg-ar-dark/95 backdrop-blur-2xl border-b border-ar-gold/20 shadow-lg shadow-ar-gold/5 mb-8">
         <nav className="flex items-center text-xs mb-3 text-gray-500">
-          <Link href={`/${locale}/admin`} className="hover:text-ar-gold transition-colors">Admin</Link>
+          <Link href={`${localePath(locale, '/admin')}`} className="hover:text-ar-gold transition-colors">Admin</Link>
           <ChevronRight className="h-3 w-3 mx-2 text-ar-gold/30" />
-          <Link href={`/${locale}/admin/locations/vehicules`} className="hover:text-ar-gold transition-colors">Flotte</Link>
+          <Link href={`${localePath(locale, '/admin/locations/vehicules')}`} className="hover:text-ar-gold transition-colors">Flotte</Link>
           <ChevronRight className="h-3 w-3 mx-2 text-ar-gold/30" />
           <span className="text-ar-gold">Modifier</span>
         </nav>
@@ -313,7 +314,7 @@ export default function ModifierVehiculePage({ params }: ModifierVehiculePagePro
             </div>
           </div>
           <div className="flex items-center gap-2">
-            <Link href={`/${locale}/admin/locations/vehicules`}>
+            <Link href={`${localePath(locale, '/admin/locations/vehicules')}`}>
               <Button variant="ghost" className="text-gray-400 hover:text-white hover:bg-ar-gold/5">
                 <ArrowLeft className="h-4 w-4 mr-2" />
                 Retour
@@ -524,7 +525,7 @@ export default function ModifierVehiculePage({ params }: ModifierVehiculePagePro
 
           {/* Bouton bas */}
           <div className="flex justify-end gap-3 pb-8">
-            <Link href={`/${locale}/admin/locations/vehicules`}>
+            <Link href={`${localePath(locale, '/admin/locations/vehicules')}`}>
               <Button variant="outline" className="border-ar-gold/20 text-gray-300 hover:text-white hover:border-ar-gold/40 hover:bg-ar-gold/5">
                 Annuler
               </Button>
@@ -544,7 +545,7 @@ export default function ModifierVehiculePage({ params }: ModifierVehiculePagePro
               Planning des réservations
             </h2>
             <OccupiedCalendar vehicleId={id} />
-            <Link href={`/${locale}/admin/locations?vehicle=${id}`} className="block mt-4">
+            <Link href={`${localePath(locale, `/admin/locations?vehicle=${id}`)}`} className="block mt-4">
               <Button variant="outline" size="sm" className="w-full border-ar-gold/30 text-ar-gold hover:bg-ar-gold/10">
                 Voir toutes les réservations
               </Button>

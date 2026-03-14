@@ -16,6 +16,7 @@ import { getSiteSettings } from "@/lib/site-settings";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { MountReveal, MountStagger } from "@/components/ui/MountReveal";
+import { localePath } from '@/lib/constants'
 
 interface ContactPageProps {
   params: { locale: string };
@@ -41,11 +42,11 @@ export async function generateMetadata({
     title: titles[locale as keyof typeof titles] || titles.fr,
     description: descriptions[locale as keyof typeof descriptions] || descriptions.fr,
     alternates: {
-      canonical: `/${locale}/contact`,
+      canonical: locale === "fr" ? "/contact" : `${localePath(locale, '/contact')}`,
       languages: {
-        fr: "/fr/contact",
+        fr: "/contact",
         en: "/en/contact",
-        "x-default": "/fr/contact",
+        "x-default": "/contact",
       },
     },
   };
@@ -111,7 +112,7 @@ export default async function ContactPage({ params }: ContactPageProps) {
         {/* Back link */}
         <div className="container mx-auto px-4">
           <Link
-            href={`/${locale}`}
+            href={`${localePath(locale)}`}
             className="mb-8 inline-flex items-center text-sm text-ar-silver transition-colors hover:text-ar-gold"
           >
             {t.backHome}

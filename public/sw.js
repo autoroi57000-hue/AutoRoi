@@ -5,7 +5,6 @@ const MAX_DYNAMIC_IMAGES = 100;
 
 const STATIC_ASSETS = [
   '/',
-  '/fr/',
   '/offline.html',
   '/manifest.json',
   '/logo1.png',

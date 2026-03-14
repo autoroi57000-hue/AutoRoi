@@ -3,6 +3,7 @@ import { redirect } from "next/navigation"
 import { createClient } from "@/lib/supabase/server"
 import { getDashboardStats, getLatestVehicles } from "./actions"
 import dynamic from "next/dynamic"
+import { localePath } from '@/lib/constants'
 
 const DashboardContent = dynamic(
   () => import("@/components/admin/DashboardContent"),
@@ -23,7 +24,7 @@ export default async function DashboardPage({ params }: DashboardPageProps) {
   } = await supabase.auth.getUser()
 
   if (!user) {
-    redirect(`/${locale}/login`)
+    redirect(`${localePath(locale, '/login')}`)
   }
 
   // Charger le rôle

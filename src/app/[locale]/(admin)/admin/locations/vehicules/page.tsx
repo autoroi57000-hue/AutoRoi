@@ -46,6 +46,7 @@ import {
 } from "./actions"
 import { toast } from "@/hooks/use-toast"
 import type { RentalVehicleStatus } from "@/types/rental"
+import { localePath } from '@/lib/constants'
 
 interface VehiculesPageProps {
   params: { locale: string }
@@ -139,7 +140,7 @@ export default function VehiculesPage({ params }: VehiculesPageProps) {
           </h1>
           <div className="absolute -bottom-2 left-0 w-16 h-1 bg-gradient-to-r from-ar-gold to-transparent rounded-full" />
         </div>
-        <Link href={`/${locale}/admin/locations/vehicules/nouveau`}>
+        <Link href={`${localePath(locale, '/admin/locations/vehicules/nouveau')}`}>
           <Button className="group relative overflow-hidden bg-gradient-to-r from-ar-gold via-ar-gold-light to-ar-gold hover:from-ar-gold-light hover:via-ar-gold hover:to-ar-gold-light text-ar-black font-bold shadow-lg shadow-ar-gold/20 hover:shadow-xl hover:shadow-ar-gold/30 hover:-translate-y-0.5 transition-all duration-300">
             <span className="absolute inset-0 bg-white/20 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700" />
             <Plus className="relative h-4 w-4 mr-2" />
@@ -201,7 +202,7 @@ export default function VehiculesPage({ params }: VehiculesPageProps) {
             <KeyRound className="h-8 w-8 text-ar-gold/50" />
           </div>
           <p className="text-gray-400 mb-4">Aucun véhicule dans la flotte</p>
-          <Link href={`/${locale}/admin/locations/vehicules/nouveau`}>
+          <Link href={`${localePath(locale, '/admin/locations/vehicules/nouveau')}`}>
             <Button size="sm" className="bg-ar-gold text-ar-black hover:bg-ar-gold-light font-bold">
               <Plus className="h-4 w-4 mr-2" />
               Ajouter le premier véhicule
@@ -299,7 +300,7 @@ export default function VehiculesPage({ params }: VehiculesPageProps) {
                   <div className="flex items-center gap-2 mt-auto">
                     {/* Modifier — bouton principal */}
                     <button
-                      onClick={() => router.push(`/${locale}/admin/locations/vehicules/${vehicle.id}/modifier`)}
+                      onClick={() => router.push(`${localePath(locale, `/admin/locations/vehicules/${vehicle.id}/modifier`)}`)}
                       className="flex-1 flex items-center justify-center gap-2 py-2.5 rounded-xl text-sm font-bold transition-all duration-200 hover:shadow-lg hover:shadow-ar-gold/20 hover:brightness-110 active:scale-95"
                       style={{ background: "linear-gradient(135deg, #C9A84C, #e0c068)", color: "#0A0A0A" }}
                       title="Modifier"
@@ -310,7 +311,7 @@ export default function VehiculesPage({ params }: VehiculesPageProps) {
 
                     {/* Voir public */}
                     <Link
-                      href={`/${locale}/location/${vehicle.slug}`}
+                      href={`${localePath(locale, `/location/${vehicle.slug}`)}`}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="flex items-center justify-center w-10 h-10 rounded-xl transition-all duration-200 hover:scale-105 active:scale-95"

@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server"
 import { z } from "zod"
 import { stripe } from "@/lib/stripe"
 import { createAdminClient } from "@/lib/supabase/server"
-import { SITE_URL, SITE_NAME } from "@/lib/constants"
+import { SITE_URL, SITE_NAME, localePath } from "@/lib/constants"
 import type { Rental } from "@/types/rental"
 
 const bodySchema = z.object({
@@ -129,8 +129,8 @@ export async function POST(request: NextRequest) {
         rental_reference: r.reference,
         site: SITE_NAME,
       },
-      success_url: `${SITE_URL}/${locale}/location/confirmation?session_id={CHECKOUT_SESSION_ID}`,
-      cancel_url: `${SITE_URL}/${locale}/location/${vehicleSlug}?cancelled=true`,
+      success_url: `${SITE_URL}${localePath(locale, '/location/confirmation')}?session_id={CHECKOUT_SESSION_ID}`,
+      cancel_url: `${SITE_URL}${localePath(locale, `/location/${vehicleSlug}`)}?cancelled=true`,
       expires_at: Math.floor(Date.now() / 1000) + 30 * 60, // +30 minutes
       payment_intent_data: {
         description: `${SITE_NAME} — ${r.reference}`,

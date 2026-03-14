@@ -54,7 +54,7 @@ export default function NotFound() {
               <span className="relative">Accueil</span>
             </Button>
           </Link>
-          <Link href="/fr/vehicules">
+          <Link href="/vehicules">
             <Button
               variant="outline"
               className="border-ar-gold/30 text-ar-gold hover:bg-ar-gold/10 hover:border-ar-gold/50 w-full sm:w-auto"

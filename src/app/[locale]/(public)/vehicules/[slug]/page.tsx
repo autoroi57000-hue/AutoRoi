@@ -17,8 +17,7 @@ import { getSiteSettings } from "@/lib/site-settings"
 import { formatPrice, formatMileage } from "@/lib/utils"
 import {
   FUEL_LABELS, TRANSMISSION_LABELS, BODY_LABELS,
-  CONDITION_LABELS, DRIVE_LABELS, SITE_URL,
-} from "@/lib/constants"
+  CONDITION_LABELS, DRIVE_LABELS, SITE_URL, localePath,} from '@/lib/constants'
 import { FEATURES_BY_CATEGORY } from "@/lib/validations/vehicle"
 import type {
   FuelType, TransmissionType, BodyType, ConditionType,
@@ -369,18 +368,18 @@ export default async function VehiclePage({ params }: PageProps) {
         <div className="py-3" style={{ borderBottom: '1px solid rgba(255,255,255,0.05)' }}>
           <div className="container mx-auto px-4">
             <nav className="flex items-center gap-1.5 text-xs" style={{ color: 'rgba(255,255,255,0.4)' }} aria-label="Fil d'Ariane">
-              <Link href={`/${locale}`} className="hover:text-ar-gold transition-colors flex items-center gap-1">
+              <Link href={`${localePath(locale)}`} className="hover:text-ar-gold transition-colors flex items-center gap-1">
                 <Home className="h-3 w-3" />
                 Accueil
               </Link>
               <ChevronRight className="h-3 w-3 opacity-40" />
-              <Link href={`/${locale}/vehicules`} className="hover:text-ar-gold transition-colors">
+              <Link href={`${localePath(locale, '/vehicules')}`} className="hover:text-ar-gold transition-colors">
                 Véhicules
               </Link>
               {vehicle.body && (
                 <>
                   <ChevronRight className="h-3 w-3 opacity-40" />
-                  <Link href={`/${locale}/vehicules?carrosserie=${vehicle.body}`} className="hover:text-ar-gold transition-colors">
+                  <Link href={`${localePath(locale, `/vehicules?carrosserie=${vehicle.body}`)}`} className="hover:text-ar-gold transition-colors">
                     {BODY_LABELS[vehicle.body]}
                   </Link>
                 </>

@@ -3,7 +3,7 @@
 import { redirect } from 'next/navigation'
 import { z } from 'zod'
 import { createActionClient } from '@/lib/supabase/server'
-import { DEFAULT_LOCALE } from '@/lib/constants'
+import { DEFAULT_LOCALE, localePath} from '@/lib/constants'
 
 // ─── Schemas ─────────────────────────────────────────────────────────────────
 
@@ -79,7 +79,7 @@ export async function loginAction(formData: FormData): Promise<ActionResult> {
     }
   }
 
-  redirect(`/${parsed.data.locale}/admin`)
+  redirect(localePath(parsed.data.locale, '/admin'))
 }
 
 // ─── Logout ───────────────────────────────────────────────────────────────────
@@ -87,7 +87,7 @@ export async function loginAction(formData: FormData): Promise<ActionResult> {
 export async function logoutAction(locale: string = DEFAULT_LOCALE): Promise<void> {
   const supabase = await createActionClient()
   await supabase.auth.signOut()
-  redirect(`/${locale}/login`)
+  redirect(`${localePath(locale, '/login')}`)
 }
 
 // ─── Mot de passe oublié ─────────────────────────────────────────────────────
@@ -104,7 +104,7 @@ export async function forgotPasswordAction(formData: FormData): Promise<ActionRe
 
   const supabase = await createActionClient()
   const { error } = await supabase.auth.resetPasswordForEmail(parsed.data.email, {
-    redirectTo: `${process.env.NEXT_PUBLIC_SITE_URL}/${parsed.data.locale}/reset-password`,
+    redirectTo: `${process.env.NEXT_PUBLIC_SITE_URL}${localePath(parsed.data.locale, '/reset-password')}`,
   })
 
   if (error) {
@@ -138,5 +138,5 @@ export async function resetPasswordAction(formData: FormData): Promise<ActionRes
     return { success: false, error: 'Impossible de modifier le mot de passe. Le lien a peut-être expiré.' }
   }
 
-  redirect(`/${parsed.data.locale}/login?reset=success`)
+  redirect(`${localePath(parsed.data.locale, '/login')}?reset=success`)
 }

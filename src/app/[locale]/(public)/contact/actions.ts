@@ -126,7 +126,7 @@ function getAdminEmailTemplate(
       </div>
 
       <div style="text-align: center; margin-top: 30px;">
-        <a href="${siteUrl}/fr/admin/messages" class="button">
+        <a href="${siteUrl}/admin/messages" class="button">
           Voir dans l'admin
         </a>
       </div>

@@ -11,6 +11,7 @@ import { VehicleListItem } from "@/components/vehicle/VehicleListItem"
 import { VehicleFilters } from "@/components/vehicle/VehicleFilters"
 import { CatalogToolbar } from "@/components/vehicle/CatalogToolbar"
 import { AnimatedGrid } from "@/components/ui/AnimatedGrid"
+import { localePath } from '@/lib/constants'
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -33,18 +34,18 @@ export async function generateMetadata({ params }: VehiclesPageProps): Promise<M
     title,
     description,
     alternates: {
-      canonical: `/${locale}/vehicules`,
+      canonical: locale === "fr" ? "/vehicules" : `${localePath(locale, '/vehicules')}`,
       languages: {
-        fr: "/fr/vehicules",
+        fr: "/vehicules",
         en: "/en/vehicules",
-        "x-default": "/fr/vehicules",
+        "x-default": "/vehicules",
       },
     },
     openGraph: {
       title,
       description,
       type: "website",
-      url: `/${locale}/vehicules`,
+      url: `${localePath(locale, '/vehicules')}`,
     },
   }
 }
@@ -126,7 +127,7 @@ export default async function VehiclesPage({ params, searchParams }: VehiclesPag
       <div className="container mx-auto px-4 py-8">
         <div className="flex gap-6 items-start">
 
-          {/* Sidebar filters (desktop) + mobile button */}
+          {/* Sidebar filters (desktop only) */}
           <Suspense fallback={<div className="hidden lg:block w-[280px] shrink-0" />}>
             <VehicleFilters filtersData={filtersData} />
           </Suspense>
@@ -134,15 +135,10 @@ export default async function VehiclesPage({ params, searchParams }: VehiclesPag
           {/* Content */}
           <div className="flex-1 min-w-0 space-y-4">
 
-            {/* Mobile filter button row + toolbar */}
-            <div className="flex flex-wrap items-center gap-3">
-              {/* Mobile filters button is rendered inside VehicleFilters, shown only on mobile */}
-              <div className="flex-1 lg:flex-none lg:w-full">
-                <Suspense fallback={<div className="h-12 rounded-xl animate-pulse" style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.08)' }} />}>
-                  <CatalogToolbar total={total} currentPage={page} perPage={PER_PAGE} />
-                </Suspense>
-              </div>
-            </div>
+            {/* Toolbar */}
+            <Suspense fallback={<div className="h-12 rounded-xl animate-pulse" style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.08)' }} />}>
+              <CatalogToolbar total={total} currentPage={page} perPage={PER_PAGE} filtersData={filtersData} />
+            </Suspense>
 
             {/* Results */}
             {vehicles.length === 0 ? (
@@ -192,7 +188,7 @@ function EmptyState({ locale }: { locale: string }) {
         Aucun véhicule ne correspond à vos critères de recherche. Essayez de modifier vos filtres.
       </p>
       <Link
-        href={`/${locale}/vehicules`}
+        href={`${localePath(locale, '/vehicules')}`}
         className="px-6 py-2.5 rounded-xl text-ar-black font-semibold text-sm transition-colors hover:brightness-110"
         style={{ background: '#C9A84C' }}
       >
@@ -224,7 +220,7 @@ function Pagination({
     }
     if (page > 1) params.set("page", String(page))
     const qs = params.toString()
-    return `/${locale}/vehicules${qs ? `?${qs}` : ""}`
+    return `${localePath(locale, '/vehicules')}${qs ? `?${qs}` : ""}`
   }
 
   // Show at most 5 page numbers around current

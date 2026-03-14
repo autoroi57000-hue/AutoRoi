@@ -4,6 +4,7 @@ import { useRef, useState } from "react";
 import Link from "next/link";
 import { motion, useInView } from "framer-motion";
 import { Car, Bike, Truck } from "lucide-react";
+import { localePath } from '@/lib/constants'
 
 interface CategoriesSectionProps {
   locale?: string;
@@ -158,9 +159,9 @@ export function CategoriesSection({
 
   const getHref = (key: string, locale: string) => {
     if (key === "all") {
-      return `/${locale}/vehicules`;
+      return `${localePath(locale, '/vehicules')}`;
     }
-    return `/${locale}/vehicules?type=${key}`;
+    return `${localePath(locale, `/vehicules?type=${key}`)}`;
   };
 
   return (

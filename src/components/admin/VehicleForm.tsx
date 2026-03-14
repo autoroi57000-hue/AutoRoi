@@ -64,6 +64,7 @@ import {
   duplicateVehicleAction,
   markAsSoldAction,
 } from "@/app/[locale]/(admin)/admin/annonces/actions"
+import { localePath } from '@/lib/constants'
 
 interface VehicleFormProps {
   mode: "create" | "edit"
@@ -277,7 +278,7 @@ export function VehicleForm({
             onSuccess(initialData.id)
           } else if (publish) {
             // Si publication, redirection vers la liste après 2s
-            setTimeout(() => router.push(`/${locale}/admin/annonces`), 2000)
+            setTimeout(() => router.push(`${localePath(locale, '/admin/annonces')}`), 2000)
           }
           // En mode brouillon, on reste sur la page
         } else {
@@ -302,7 +303,7 @@ export function VehicleForm({
         if (onSuccess) {
           onSuccess(result.vehicleId)
         } else {
-          setTimeout(() => router.push(`/${locale}/admin/annonces/${result.vehicleId}`), 1500)
+          setTimeout(() => router.push(`${localePath(locale, `/admin/annonces/${result.vehicleId}`)}`), 1500)
         }
       } else {
         setError(result.error || "Erreur lors de la duplication")
@@ -325,7 +326,7 @@ export function VehicleForm({
         if (onSuccess) {
           onSuccess(initialData.id)
         } else {
-          setTimeout(() => router.push(`/${locale}/admin/annonces`), 1500)
+          setTimeout(() => router.push(`${localePath(locale, '/admin/annonces')}`), 1500)
         }
       } else {
         setError(result.error || "Erreur lors du changement de statut")
@@ -348,7 +349,7 @@ export function VehicleForm({
         if (onSuccess) {
           onSuccess(initialData.id)
         } else {
-          setTimeout(() => router.push(`/${locale}/admin/annonces`), 1500)
+          setTimeout(() => router.push(`${localePath(locale, '/admin/annonces')}`), 1500)
         }
       } else {
         setError(result.error || "Erreur lors de la suppression")
@@ -494,7 +495,7 @@ export function VehicleForm({
                 <Button
                   type="button"
                   size="sm"
-                  onClick={() => router.push(`/${locale}/admin/annonces/${createdVehicleId}`)}
+                  onClick={() => router.push(`${localePath(locale, `/admin/annonces/${createdVehicleId}`)}`)}
                   className="relative overflow-hidden bg-gradient-to-r from-ar-gold via-ar-gold-light to-ar-gold hover:from-ar-gold-light hover:via-ar-gold hover:to-ar-gold-light text-ar-black font-bold shadow-lg shadow-ar-gold/30 transition-all duration-300 hover:shadow-xl hover:shadow-ar-gold/40"
                 >
                   <CheckCircle className="h-4 w-4 mr-1.5" />

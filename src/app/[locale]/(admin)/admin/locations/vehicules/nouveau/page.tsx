@@ -34,6 +34,7 @@ const PhotoUploader = dynamic(
 )
 import { createRentalVehicle, getRentalOptions } from "../actions"
 import { toast } from "@/hooks/use-toast"
+import { localePath } from '@/lib/constants'
 
 interface NouveauVehiculePageProps {
   params: { locale: string }
@@ -161,9 +162,9 @@ export default function NouveauVehiculePage({ params }: NouveauVehiculePageProps
       {/* Header sticky */}
       <div className="sticky top-0 z-40 -mx-3 sm:-mx-4 lg:-mx-6 -mt-3 sm:-mt-4 lg:-mt-6 px-3 sm:px-4 lg:px-6 pt-3 sm:pt-4 lg:pt-6 pb-3 sm:pb-4 bg-ar-dark/95 backdrop-blur-2xl border-b border-ar-gold/20 shadow-lg shadow-ar-gold/5 mb-6 sm:mb-8">
         <nav className="flex items-center text-xs mb-3 text-gray-500">
-          <Link href={`/${locale}/admin`} className="hover:text-ar-gold transition-colors">Admin</Link>
+          <Link href={`${localePath(locale, '/admin')}`} className="hover:text-ar-gold transition-colors">Admin</Link>
           <ChevronRight className="h-3 w-3 mx-2 text-ar-gold/30" />
-          <Link href={`/${locale}/admin/locations/vehicules`} className="hover:text-ar-gold transition-colors">Flotte</Link>
+          <Link href={`${localePath(locale, '/admin/locations/vehicules')}`} className="hover:text-ar-gold transition-colors">Flotte</Link>
           <ChevronRight className="h-3 w-3 mx-2 text-ar-gold/30" />
           <span className="text-ar-gold">Nouveau</span>
         </nav>
@@ -181,7 +182,7 @@ export default function NouveauVehiculePage({ params }: NouveauVehiculePageProps
             </div>
           </div>
           <div className="flex items-center gap-2">
-            <Link href={`/${locale}/admin/locations/vehicules`}>
+            <Link href={`${localePath(locale, '/admin/locations/vehicules')}`}>
               <Button variant="ghost" className="text-gray-400 hover:text-white hover:bg-ar-gold/5">
                 <ArrowLeft className="h-4 w-4 mr-2" />
                 Retour
@@ -190,7 +191,7 @@ export default function NouveauVehiculePage({ params }: NouveauVehiculePageProps
             {createdVehicleId ? (
               <Button
                 type="button"
-                onClick={() => router.push(`/${locale}/admin/locations/vehicules`)}
+                onClick={() => router.push(`${localePath(locale, '/admin/locations/vehicules')}`)}
                 className="bg-gradient-to-r from-ar-gold to-ar-gold-light text-ar-black font-bold hover:shadow-lg hover:shadow-ar-gold/30"
               >
                 <Check className="h-4 w-4 mr-2" />
@@ -416,7 +417,7 @@ export default function NouveauVehiculePage({ params }: NouveauVehiculePageProps
 
         {/* Bouton bas de page */}
         <div className="flex justify-end gap-3 pb-8">
-          <Link href={`/${locale}/admin/locations/vehicules`}>
+          <Link href={`${localePath(locale, '/admin/locations/vehicules')}`}>
             <Button variant="outline" className="border-ar-gold/20 text-gray-300 hover:text-white hover:border-ar-gold/40 hover:bg-ar-gold/5">
               {createdVehicleId ? "Retour à la flotte" : "Annuler"}
             </Button>
@@ -424,7 +425,7 @@ export default function NouveauVehiculePage({ params }: NouveauVehiculePageProps
           {createdVehicleId ? (
             <Button
               type="button"
-              onClick={() => router.push(`/${locale}/admin/locations/vehicules`)}
+              onClick={() => router.push(`${localePath(locale, '/admin/locations/vehicules')}`)}
               className="bg-gradient-to-r from-ar-gold to-ar-gold-light text-ar-black font-bold hover:shadow-lg hover:shadow-ar-gold/30 px-8"
             >
               <Check className="h-4 w-4 mr-2" />

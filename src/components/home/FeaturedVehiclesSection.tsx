@@ -6,6 +6,7 @@ import { motion, useInView } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { VehicleCard } from "@/components/vehicle/VehicleCard";
 import type { VehicleCard as VehicleCardType } from "@/types/vehicle";
+import { localePath } from '@/lib/constants'
 
 interface FeaturedVehiclesSectionProps {
   locale?: string;
@@ -87,7 +88,7 @@ export function FeaturedVehiclesSection({
               className="mt-12 text-center"
             >
               <Link
-                href={`/${locale}/vehicules`}
+                href={`${localePath(locale, '/vehicules')}`}
                 className="group inline-flex items-center gap-2 rounded-full border-2 px-8 py-4 font-medium transition-all hover:shadow-[0_4px_24px_rgba(201,168,76,0.25)] hover:-translate-y-0.5"
                 style={{ borderColor: 'rgba(201,168,76,0.5)', color: '#C9A84C' }}
               >

@@ -22,6 +22,12 @@ export const LOCALES = ['fr', 'en'] as const
 export const DEFAULT_LOCALE = 'fr' as const
 export type Locale = (typeof LOCALES)[number]
 
+/** Build a locale-aware path (no /fr/ prefix for the default locale) */
+export function localePath(locale: string, path: string = '') {
+  if (locale === DEFAULT_LOCALE) return path || '/'
+  return `/${locale}${path}`
+}
+
 // ─── ENUMs DB (alignés avec les types PostgreSQL) ────────────────────────────
 
 export const VEHICLE_TYPES: readonly VehicleType[] = [

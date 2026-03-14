@@ -20,6 +20,7 @@ import {
 import { cn } from '@/lib/utils'
 import { logoutAction } from '@/app/[locale]/(auth)/actions'
 import type { Profile } from '@/types/database'
+import { localePath } from '@/lib/constants'
 
 interface NavItem {
   href: string
@@ -60,45 +61,45 @@ export function AdminSidebar({
 
   const navItems: NavItem[] = [
     {
-      href: `/${locale}/admin`,
+      href: `${localePath(locale, '/admin')}`,
       label: 'Dashboard',
       icon: LayoutDashboard,
     },
     {
-      href: `/${locale}/admin/annonces`,
+      href: `${localePath(locale, '/admin/annonces')}`,
       label: 'Annonces',
       icon: Car,
       badge: vehicleCount > 0 ? vehicleCount : undefined,
     },
     {
-      href: `/${locale}/admin/annonces/nouvelle`,
+      href: `${localePath(locale, '/admin/annonces/nouvelle')}`,
       label: 'Nouvelle annonce',
       icon: Plus,
     },
     {
-      href: `/${locale}/admin/locations`,
+      href: `${localePath(locale, '/admin/locations')}`,
       label: 'Réservations',
       icon: Calendar,
     },
     {
-      href: `/${locale}/admin/locations/vehicules`,
+      href: `${localePath(locale, '/admin/locations/vehicules')}`,
       label: 'Flotte location',
       icon: KeyRound,
     },
     {
-      href: `/${locale}/admin/messages`,
+      href: `${localePath(locale, '/admin/messages')}`,
       label: 'Messages',
       icon: MessageSquare,
       badge: unreadMessages > 0 ? unreadMessages : undefined,
     },
     {
-      href: `/${locale}/admin/collaborateurs`,
+      href: `${localePath(locale, '/admin/collaborateurs')}`,
       label: 'Collaborateurs',
       icon: Users,
       adminOnly: true,
     },
     {
-      href: `/${locale}/admin/parametres`,
+      href: `${localePath(locale, '/admin/parametres')}`,
       label: 'Paramètres',
       icon: Settings,
       adminOnly: true,
@@ -131,7 +132,7 @@ export function AdminSidebar({
         <ul className="space-y-1.5">
           {visibleItems.map((item) => {
             const isActive =
-              item.href === `/${locale}/admin`
+              item.href === `${localePath(locale, '/admin')}`
                 ? pathname === item.href
                 : pathname.startsWith(item.href)
 

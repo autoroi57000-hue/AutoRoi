@@ -4,6 +4,7 @@ import { useState, useTransition } from 'react'
 import { useRouter } from 'next/navigation'
 import { Lock, Loader2, AlertCircle, CheckCircle2, Eye, EyeOff } from 'lucide-react'
 import { createClient } from '@/lib/supabase/client'
+import { localePath } from '@/lib/constants'
 
 interface SetPasswordPageProps {
   params: { locale: string }
@@ -52,7 +53,7 @@ export default function SetPasswordPage({ params }: SetPasswordPageProps) {
 
       setSuccess(true)
       setTimeout(() => {
-        router.push(`/${locale}/admin`)
+        router.push(`${localePath(locale, '/admin')}`)
       }, 2000)
     })
   }

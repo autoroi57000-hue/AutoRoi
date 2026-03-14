@@ -7,6 +7,7 @@ import { ChevronDown } from "lucide-react";
 import Link from "next/link";
 import { QuickSearchBar } from "@/components/search/QuickSearchBar";
 import { createClient } from "@/lib/supabase/client";
+import { localePath } from '@/lib/constants'
 
 interface HeroSectionProps {
   locale?: string;
@@ -80,10 +81,10 @@ export function HeroSection({ locale = "fr", brands = [] }: HeroSectionProps) {
     fr: {
       title: "AUTO ROI",
       services: [
-        { label: "Achat", href: `/${locale}/vehicules` },
-        { label: "Vente", href: `/${locale}/vehicules` },
-        { label: "Reprise", href: `/${locale}/contact` },
-        { label: "Location", href: `/${locale}/location` },
+        { label: "Achat", href: `${localePath(locale, '/vehicules')}` },
+        { label: "Vente", href: `${localePath(locale, '/vehicules')}` },
+        { label: "Reprise", href: `${localePath(locale, '/contact')}` },
+        { label: "Location", href: `${localePath(locale, '/location')}` },
       ],
       suffix: "Automobile",
       vehiclesAvailable: "véhicules disponibles",
@@ -92,10 +93,10 @@ export function HeroSection({ locale = "fr", brands = [] }: HeroSectionProps) {
     en: {
       title: "AUTO ROI",
       services: [
-        { label: "Purchase", href: `/${locale}/vehicules` },
-        { label: "Sale", href: `/${locale}/vehicules` },
-        { label: "Trade-in", href: `/${locale}/contact` },
-        { label: "Rental", href: `/${locale}/location` },
+        { label: "Purchase", href: `${localePath(locale, '/vehicules')}` },
+        { label: "Sale", href: `${localePath(locale, '/vehicules')}` },
+        { label: "Trade-in", href: `${localePath(locale, '/contact')}` },
+        { label: "Rental", href: `${localePath(locale, '/location')}` },
       ],
       suffix: "Vehicle",
       vehiclesAvailable: "vehicles available",

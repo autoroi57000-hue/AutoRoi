@@ -18,7 +18,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { VEHICLE_TYPES, FUEL_TYPES } from "@/lib/constants";
+import { VEHICLE_TYPES, FUEL_TYPES, localePath} from '@/lib/constants';
 import type { VehicleFilters } from "@/types/vehicle";
 
 interface QuickSearchBarProps {
@@ -51,7 +51,7 @@ export function QuickSearchBar({
     if (filters.max_price) params.set("max_price", filters.max_price.toString());
 
     const query = params.toString();
-    router.push(`/${locale}/vehicules${query ? `?${query}` : ""}`);
+    router.push(`${localePath(locale, '/vehicules')}${query ? `?${query}` : ""}`);
   };
 
   const handleAdvancedSearch = () => {
@@ -186,7 +186,7 @@ export function QuickSearchBar({
         {/* Advanced search link */}
         <div className="mt-2 flex justify-end border-t border-ar-gold/10 pt-2">
           <button
-            onClick={() => router.push(`/${locale}/vehicules`)}
+            onClick={() => router.push(`${localePath(locale, '/vehicules')}`)}
             className="flex items-center gap-1 text-xs font-medium text-ar-gold/70 transition-colors hover:text-ar-gold"
           >
             {t.advancedSearch}
@@ -329,7 +329,7 @@ export function QuickSearchBar({
 
               <Button
                 variant="outline"
-                onClick={() => router.push(`/${locale}/vehicules`)}
+                onClick={() => router.push(`${localePath(locale, '/vehicules')}`)}
                 className="w-full"
               >
                 <SlidersHorizontal className="mr-2 h-4 w-4" />

@@ -67,7 +67,7 @@ export default async function SettingsPage() {
   const isAdmin = await checkAdmin();
   
   if (!isAdmin) {
-    redirect("/fr/login");
+    redirect("/login");
   }
 
   // Charger les settings

@@ -5,6 +5,7 @@ import { AdminSidebar } from '@/components/admin/AdminSidebar'
 import { AdminHeader } from '@/components/admin/AdminHeader'
 import { Toaster } from '@/components/ui/toaster'
 import type { Profile } from '@/types/database'
+import { localePath } from '@/lib/constants'
 
 interface AdminLayoutProps {
   children: ReactNode
@@ -21,7 +22,7 @@ export default async function AdminLayout({ children, params }: AdminLayoutProps
   } = await supabase.auth.getUser()
 
   if (!user) {
-    redirect(`/${locale}/login`)
+    redirect(`${localePath(locale, '/login')}`)
   }
 
   // Charger le profil
@@ -32,13 +33,13 @@ export default async function AdminLayout({ children, params }: AdminLayoutProps
     .single<Profile>()
 
   if (!profile) {
-    redirect(`/${locale}/login`)
+    redirect(`${localePath(locale, '/login')}`)
   }
 
   // Vérifier que le compte est actif
   if (!profile.is_active) {
     await supabase.auth.signOut()
-    redirect(`/${locale}/login?error=disabled`)
+    redirect(`${localePath(locale, '/login?error=disabled')}`)
   }
 
   // Charger les compteurs pour la sidebar

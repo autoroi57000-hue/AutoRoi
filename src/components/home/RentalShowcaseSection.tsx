@@ -6,6 +6,7 @@ import { motion } from "framer-motion"
 import { Users, Zap, ArrowRight } from "lucide-react"
 import { AnimatedGrid } from "@/components/ui/AnimatedGrid"
 import type { RentalVehicle } from "@/types/rental"
+import { localePath } from '@/lib/constants'
 
 interface RentalShowcaseSectionProps {
   locale: string
@@ -21,7 +22,7 @@ function RentalCard({
   locale: string
   isFr: boolean
 }) {
-  const href = `/${locale}/location/${vehicle.slug}`
+  const href = `${localePath(locale, `/location/${vehicle.slug}`)}`
   const coverUrl = vehicle.cover_photo || vehicle.photos?.[0]?.url
 
   return (
@@ -225,7 +226,7 @@ export function RentalShowcaseSection({
           className="mt-10 text-center"
         >
           <Link
-            href={`/${locale}/location`}
+            href={`${localePath(locale, '/location')}`}
             className="btn-shimmer inline-flex items-center gap-2 rounded-xl px-8 py-3 text-sm font-bold transition-all duration-300 hover:shadow-lg"
             style={{
               background: "rgba(201,168,76,0.1)",

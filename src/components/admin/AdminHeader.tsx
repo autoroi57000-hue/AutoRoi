@@ -8,6 +8,7 @@ import { cn } from '@/lib/utils'
 import type { Profile } from '@/types/database'
 import { ChangePasswordDialog } from './ChangePasswordDialog'
 import { createClient } from '@/lib/supabase/client'
+import { localePath } from '@/lib/constants'
 
 interface AdminHeaderProps {
   locale: string
@@ -68,7 +69,7 @@ export function AdminHeader({ locale, profile, onMenuToggle }: AdminHeaderProps)
   const handleLogout = async () => {
     const supabase = createClient()
     await supabase.auth.signOut()
-    window.location.href = `/${locale}/login`
+    window.location.href = `${localePath(locale, '/login')}`
   }
 
   return (
@@ -104,7 +105,7 @@ export function AdminHeader({ locale, profile, onMenuToggle }: AdminHeaderProps)
 
         {/* Voir le site */}
         <Link
-          href={`/${locale}`}
+          href={`${localePath(locale)}`}
           target="_blank"
           rel="noopener noreferrer"
           className="hidden items-center gap-2 rounded-lg border border-ar-gold/20 bg-ar-dark/50 px-4 py-2 text-xs text-ar-silver/70 transition-all duration-300 hover:border-ar-gold/50 hover:text-ar-gold hover:shadow-lg hover:shadow-ar-gold/10 sm:flex backdrop-blur-sm"

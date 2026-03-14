@@ -3,12 +3,13 @@
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence, LayoutGroup, useScroll, useSpring, useReducedMotion } from "framer-motion";
 import { Menu, X, Phone, MessageCircle, ChevronUp } from "lucide-react";
 import { LocaleSwitcher } from "./LocaleSwitcher";
 import { cn } from "@/lib/utils";
+import { localePath } from '@/lib/constants'
 
 interface HeaderProps {
   phoneNumber: string;
@@ -19,12 +20,12 @@ interface HeaderProps {
 export function Header({ phoneNumber, whatsappNumber, businessName }: HeaderProps) {
   const t = useTranslations("nav");
   const pathname = usePathname();
-  const locale = pathname.split("/")[1] || "fr";
+  const locale = useLocale();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [showBackToTop, setShowBackToTop] = useState(false);
 
-  const isHomePage = pathname === `/${locale}` || pathname === `/${locale}/`;
+  const isHomePage = pathname === `${localePath(locale)}` || pathname === `${localePath(locale, '/')}`;
   const prefersReducedMotion = useReducedMotion();
   const { scrollYProgress } = useScroll();
   const scaleX = useSpring(scrollYProgress, { stiffness: 120, damping: 30, restDelta: 0.001 });
@@ -77,7 +78,7 @@ export function Header({ phoneNumber, whatsappNumber, businessName }: HeaderProp
           <div className="flex h-16 items-center justify-between">
             {/* Logo */}
             <Link
-              href={`/${locale}`}
+              href={`${localePath(locale)}`}
               className="group relative flex items-center gap-2"
             >
               <Image
@@ -94,13 +95,13 @@ export function Header({ phoneNumber, whatsappNumber, businessName }: HeaderProp
             <nav className="hidden items-center gap-8 md:flex">
               <LayoutGroup>
                 {navLinks.map((link) => {
-                  const isActive = pathname === `/${locale}${link.href}` ||
-                    (link.href !== "/" && pathname.startsWith(`/${locale}${link.href}`));
+                  const isActive = pathname === `${localePath(locale, link.href)}` ||
+                    (link.href !== "/" && pathname.startsWith(`${localePath(locale, link.href)}`));
 
                   return (
                     <Link
                       key={link.href}
-                      href={`/${locale}${link.href}`}
+                      href={`${localePath(locale, link.href)}`}
                       className={cn(
                         "relative py-2 text-sm font-medium transition-colors",
                         isActive
@@ -229,11 +230,11 @@ export function Header({ phoneNumber, whatsappNumber, businessName }: HeaderProp
                     transition={{ delay: index * 0.1 }}
                   >
                     <Link
-                      href={`/${locale}${link.href}`}
+                      href={`${localePath(locale, link.href)}`}
                       onClick={() => setIsMobileMenuOpen(false)}
                       className={cn(
                         "block border-b border-ar-gray-700/50 py-4 text-lg transition-colors",
-                        pathname === `/${locale}${link.href}`
+                        pathname === `${localePath(locale, link.href)}`
                           ? "text-ar-gold"
                           : "text-ar-silver hover:text-ar-gold"
                       )}

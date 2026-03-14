@@ -4,6 +4,7 @@ import { useRef } from "react";
 import Link from "next/link";
 import { motion, useInView } from "framer-motion";
 import { Phone, Mail } from "lucide-react";
+import { localePath } from '@/lib/constants'
 
 interface ContactCTASectionProps {
   locale?: string;
@@ -177,7 +178,7 @@ export function ContactCTASection({
 
             {/* Form — subtle */}
             <div className="w-full sm:w-auto">
-              <Link href={`/${locale}/contact`} className="msg-btn justify-center">
+              <Link href={`${localePath(locale, '/contact')}`} className="msg-btn justify-center">
                 <Mail className="h-4 w-4 flex-shrink-0" style={{ color: '#C9A84C' }} />
                 {t.buttons.form}
               </Link>

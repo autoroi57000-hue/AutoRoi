@@ -8,6 +8,7 @@ import {
   MapPin,
   Clock,
 } from "lucide-react";
+import { localePath } from '@/lib/constants'
 
 // ── SVG Social Icons (official logos) ──────────────────────────────
 
@@ -108,15 +109,15 @@ export async function Footer({ locale }: FooterProps) {
   const slogan = locale === "en" ? settings.slogan_en : settings.slogan_fr;
 
   const quickLinks = [
-    { href: `/${locale}`, label: tNav("home") },
-    { href: `/${locale}/vehicules`, label: tNav("vehicles") },
-    { href: `/${locale}/location`, label: tNav("rental") },
-    { href: `/${locale}/contact`, label: tNav("contact") },
+    { href: `${localePath(locale)}`, label: tNav("home") },
+    { href: `${localePath(locale, '/vehicules')}`, label: tNav("vehicles") },
+    { href: `${localePath(locale, '/location')}`, label: tNav("rental") },
+    { href: `${localePath(locale, '/contact')}`, label: tNav("contact") },
   ];
 
   const legalLinks = [
-    { href: `/${locale}/mentions-legales`, label: t("legal") },
-    { href: `/${locale}/confidentialite`, label: t("privacy") },
+    { href: `${localePath(locale, '/mentions-legales')}`, label: t("legal") },
+    { href: `${localePath(locale, '/confidentialite')}`, label: t("privacy") },
   ];
 
   const activeSocials = SOCIALS.filter((s) => settings[s.key]);
@@ -131,7 +132,7 @@ export async function Footer({ locale }: FooterProps) {
           {/* ── Col 1: Identity + Social ── */}
           <div className="lg:col-span-1">
             <Link
-              href={`/${locale}`}
+              href={`${localePath(locale)}`}
               className="font-display text-2xl font-bold text-[#C9A84C]"
             >
               {settings.business_name}

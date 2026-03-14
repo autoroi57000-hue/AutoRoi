@@ -42,6 +42,7 @@ import { Badge } from "@/components/ui/badge"
 import { Skeleton } from "@/components/ui/skeleton"
 import { getMessages, updateMessageStatus } from "../actions"
 import { createClient } from "@/lib/supabase/client"
+import { localePath } from '@/lib/constants'
 
 interface Message {
   id: string
@@ -358,7 +359,7 @@ export default function MessagesPage({ params }: MessagesPageProps) {
                     </span>
                     {selectedMessage.vehicleId && (
                       <a
-                        href={`/${locale}/admin/annonces/${selectedMessage.vehicleId}`}
+                        href={`${localePath(locale, `/admin/annonces/${selectedMessage.vehicleId}`)}`}
                         target="_blank"
                         rel="noopener noreferrer"
                       >

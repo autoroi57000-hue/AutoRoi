@@ -27,6 +27,7 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog"
 import { getClientProfile } from "@/app/[locale]/(admin)/admin/locations/actions"
+import { localePath } from '@/lib/constants'
 
 // ─── Types ──────────────────────────────────────────────────────────────────
 
@@ -281,7 +282,7 @@ export default function ClientProfileModal({
                         )}
 
                         <div className="flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
-                          <Link href={`/${locale}/admin/locations/${rental.id}`}>
+                          <Link href={`${localePath(locale, `/admin/locations/${rental.id}`)}`}>
                             <Button
                               variant="ghost"
                               size="icon"

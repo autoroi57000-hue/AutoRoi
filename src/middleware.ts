@@ -3,12 +3,12 @@ import { type NextRequest, NextResponse } from 'next/server'
 import { updateSession } from '@/lib/supabase/middleware'
 import { createServerClient } from '@supabase/ssr'
 import type { Database } from '@/types/database'
-import { LOCALES, DEFAULT_LOCALE } from '@/lib/constants'
+import { LOCALES, DEFAULT_LOCALE, localePath } from '@/lib/constants'
 
 const intlMiddleware = createMiddleware({
   locales: LOCALES,
   defaultLocale: DEFAULT_LOCALE,
-  localePrefix: 'always',
+  localePrefix: 'as-needed',
 })
 
 /** Fichiers statiques PWA — ne jamais préfixer avec i18n */
@@ -58,7 +58,7 @@ export async function middleware(request: NextRequest) {
     // Non authentifié → redirection vers login
     if (!user) {
       const locale = getLocaleFromPath(pathname)
-      const loginUrl = new URL(`/${locale}/login`, request.url)
+      const loginUrl = new URL(localePath(locale, '/login'), request.url)
       loginUrl.searchParams.set('redirectTo', pathname)
       return NextResponse.redirect(loginUrl)
     }
@@ -84,11 +84,20 @@ export async function middleware(request: NextRequest) {
 
       if (!profile || profile.role !== 'admin') {
         const locale = getLocaleFromPath(pathname)
-        return NextResponse.redirect(new URL(`/${locale}/admin`, request.url))
+        return NextResponse.redirect(new URL(localePath(locale, '/admin'), request.url))
       }
     }
 
-    return supabaseResponse
+    // Passer par intlMiddleware pour résoudre le locale (nécessaire avec as-needed)
+    // mais conserver les cookies de session de supabaseResponse
+    const intlResponse = intlMiddleware(request)
+
+    // Copier les cookies de session Supabase dans la réponse intl
+    supabaseResponse.cookies.getAll().forEach((cookie) => {
+      intlResponse.cookies.set(cookie.name, cookie.value, cookie)
+    })
+
+    return intlResponse
   }
 
   // ─── Routing i18n pour toutes les autres routes ───────────────────────────

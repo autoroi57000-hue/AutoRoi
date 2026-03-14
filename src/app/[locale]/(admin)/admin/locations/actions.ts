@@ -628,3 +628,39 @@ export async function getContractData(rentalId: string) {
     return { success: false, error: "Erreur inattendue", data: null }
   }
 }
+
+// ─── deleteRentals ─────────────────────────────────────────────────────────────
+// Supprime une ou plusieurs réservations (admin uniquement)
+
+export async function deleteRentals(ids: string[]): Promise<ActionResult> {
+  try {
+    if (!ids.length) return { success: false, error: "Aucune réservation sélectionnée" }
+
+    const supabase = await createActionClient()
+    const { user, error: authError } = await getAuthedUser(supabase)
+    if (!user) return { success: false, error: authError ?? "Non authentifié" }
+
+    const { role, error: roleError } = await getRole(supabase, user.id)
+    if (!role) return { success: false, error: roleError ?? "Profil non trouvé" }
+    if (role !== "admin") return { success: false, error: "Admin requis" }
+
+    const { error: deleteError } = await (supabase as AnyClient)
+      .from("rentals")
+      .delete()
+      .in("id", ids)
+
+    if (deleteError) {
+      console.error("deleteRentals error:", deleteError)
+      return { success: false, error: "Erreur lors de la suppression" }
+    }
+
+    LOCALES.forEach((locale) => {
+      revalidatePath(`/${locale}/admin/locations`)
+    })
+
+    return { success: true }
+  } catch (err) {
+    console.error("deleteRentals error:", err)
+    return { success: false, error: "Erreur inattendue" }
+  }
+}

@@ -39,6 +39,7 @@ import {
 } from "@/app/[locale]/(admin)/admin/actions"
 import dynamic from "next/dynamic"
 import ClientProfileModal from "@/components/admin/ClientProfileModal"
+import { localePath } from '@/lib/constants'
 
 const ContractPreviewModal = dynamic(
   () => import("@/components/admin/ContractPreviewModal"),
@@ -399,7 +400,7 @@ function RentalCalendar({
                   return (
                     <Link
                       key={event.id}
-                      href={`/${locale}/admin/locations/${event.id}`}
+                      href={`${localePath(locale, `/admin/locations/${event.id}`)}`}
                       className={`block px-1.5 py-0.5 rounded text-[10px] leading-tight truncate ${cfg.bg} ${cfg.color} hover:opacity-80 transition-opacity`}
                       title={`${event.client_first_name} ${event.client_last_name} — ${event.rental_vehicle?.brand ?? ""} ${event.rental_vehicle?.model ?? ""}`}
                     >
@@ -444,7 +445,7 @@ function RentalCalendar({
                     return (
                       <Link
                         key={event.id}
-                        href={`/${locale}/admin/locations/${event.id}`}
+                        href={`${localePath(locale, `/admin/locations/${event.id}`)}`}
                         className={`flex items-center justify-between rounded-lg px-3 py-2 ${cfg.bg} hover:opacity-80 transition-opacity`}
                       >
                         <span className={`text-xs font-medium ${cfg.color} truncate`}>
@@ -557,7 +558,7 @@ function UpcomingReservationsList({
               Client
             </Button>
           )}
-          <Link href={`/${locale}/admin/locations/${rental.id}`}>
+          <Link href={`${localePath(locale, `/admin/locations/${rental.id}`)}`}>
             <Button
               variant="ghost"
               size="sm"
@@ -811,7 +812,7 @@ export default function DashboardContent({
                 <AlertDescription>
                   Vous avez {stats.drafts} annonces en brouillon non publiées.
                   <Link
-                    href={`/${locale}/admin/annonces?status=brouillon`}
+                    href={`${localePath(locale, '/admin/annonces?status=brouillon')}`}
                     className="ml-2 underline hover:text-ar-gold-light"
                   >
                     Voir les brouillons
@@ -827,7 +828,7 @@ export default function DashboardContent({
                 <AlertDescription>
                   Vous avez {stats.unreadMessages} nouveau(x) message(s) de contact.
                   <Link
-                    href={`/${locale}/admin/messages`}
+                    href={`${localePath(locale, '/admin/messages')}`}
                     className="ml-2 underline hover:text-ar-danger/70"
                   >
                     Voir les messages
@@ -909,7 +910,7 @@ export default function DashboardContent({
 
             {/* CTA Principal */}
             <div className="flex justify-center py-6">
-              <Link href={`/${locale}/admin/annonces/nouvelle`}>
+              <Link href={`${localePath(locale, '/admin/annonces/nouvelle')}`}>
                 <Button
                   size="lg"
                   className="group relative overflow-hidden bg-gradient-to-r from-ar-gold via-ar-gold-light to-ar-gold hover:from-ar-gold-light hover:via-ar-gold hover:to-ar-gold-light text-ar-black font-bold px-10 py-7 text-lg shadow-xl shadow-ar-gold/30 transition-all duration-500 hover:shadow-2xl hover:shadow-ar-gold/40 hover:-translate-y-0.5"
@@ -931,7 +932,7 @@ export default function DashboardContent({
                   </h2>
                 </div>
                 <Link
-                  href={`/${locale}/admin/annonces`}
+                  href={`${localePath(locale, '/admin/annonces')}`}
                   className="group text-ar-gold hover:text-ar-gold-light flex items-center text-sm font-medium transition-colors"
                 >
                   Voir toutes
@@ -943,7 +944,7 @@ export default function DashboardContent({
                 {latestVehicles.map((vehicle) => (
                   <Link
                     key={vehicle.id}
-                    href={`/${locale}/admin/annonces/${vehicle.id}`}
+                    href={`${localePath(locale, `/admin/annonces/${vehicle.id}`)}`}
                     className="group"
                   >
                     <Card className="relative bg-gradient-to-br from-ar-gray/80 to-ar-dark/90 border-ar-gold/10 overflow-hidden backdrop-blur-sm transition-all duration-500 hover:border-ar-gold/30 hover:shadow-xl hover:shadow-ar-gold/10 group-hover:-translate-y-1">
@@ -984,7 +985,7 @@ export default function DashboardContent({
                     <Car className="h-10 w-10 text-ar-gold/50" />
                   </div>
                   <p className="text-ar-silver/60 mb-4">Aucune annonce publiée</p>
-                  <Link href={`/${locale}/admin/annonces/nouvelle`}>
+                  <Link href={`${localePath(locale, '/admin/annonces/nouvelle')}`}>
                     <Button
                       variant="outline"
                       className="border-ar-gold/30 text-ar-gold hover:bg-ar-gold/10 hover:border-ar-gold/50"
@@ -1111,7 +1112,7 @@ export default function DashboardContent({
 
             {/* CTA Location */}
             <div className="flex justify-center py-6">
-              <Link href={`/${locale}/admin/locations`}>
+              <Link href={`${localePath(locale, '/admin/locations')}`}>
                 <Button
                   size="lg"
                   className="group relative overflow-hidden bg-gradient-to-r from-ar-gold via-ar-gold-light to-ar-gold hover:from-ar-gold-light hover:via-ar-gold hover:to-ar-gold-light text-ar-black font-bold px-10 py-7 text-lg shadow-xl shadow-ar-gold/30 transition-all duration-500 hover:shadow-2xl hover:shadow-ar-gold/40 hover:-translate-y-0.5"
@@ -1151,7 +1152,7 @@ export default function DashboardContent({
                     {todayDepartures.map((task) => (
                       <Link
                         key={`dep-${task.id}`}
-                        href={`/${locale}/admin/locations/${task.id}`}
+                        href={`${localePath(locale, `/admin/locations/${task.id}`)}`}
                         className="flex items-center gap-4 px-5 py-3 hover:bg-ar-gold/5 transition-colors border-b border-ar-gold/5 last:border-0 group"
                       >
                         <div className="w-10 h-10 rounded-lg bg-green-500/10 flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform">
@@ -1187,7 +1188,7 @@ export default function DashboardContent({
                     {todayReturns.map((task) => (
                       <Link
                         key={`ret-${task.id}`}
-                        href={`/${locale}/admin/locations/${task.id}`}
+                        href={`${localePath(locale, `/admin/locations/${task.id}`)}`}
                         className="flex items-center gap-4 px-5 py-3 hover:bg-ar-gold/5 transition-colors border-b border-ar-gold/5 last:border-0 group"
                       >
                         <div className="w-10 h-10 rounded-lg bg-blue-500/10 flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform">

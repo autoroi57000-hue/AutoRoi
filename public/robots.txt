@@ -1,6 +1,6 @@
 User-agent: *
 Allow: /
-Disallow: /fr/admin/
+Disallow: /admin/
 Disallow: /en/admin/
 Disallow: /api/
 

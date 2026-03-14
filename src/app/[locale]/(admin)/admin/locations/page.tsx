@@ -18,6 +18,7 @@ import {
   CheckCircle,
   AlertCircle,
   TrendingUp,
+  Trash2,
 } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
@@ -46,7 +47,8 @@ import {
 } from "@/components/ui/dropdown-menu"
 import { Badge } from "@/components/ui/badge"
 import { Skeleton } from "@/components/ui/skeleton"
-import { getRentalsList, getRentalsStats, sendManualReminder } from "./actions"
+import { Checkbox } from "@/components/ui/checkbox"
+import { getRentalsList, getRentalsStats, sendManualReminder, deleteRentals } from "./actions"
 import { toast } from "@/hooks/use-toast"
 import dynamic from "next/dynamic"
 import ClientProfileModal from "@/components/admin/ClientProfileModal"
@@ -56,6 +58,7 @@ const ContractPreviewModal = dynamic(
   { ssr: false }
 )
 import { User } from "lucide-react"
+import { localePath } from '@/lib/constants'
 
 interface LocationsPageProps {
   params: { locale: string }
@@ -121,6 +124,8 @@ export default function LocationsPage({ params }: LocationsPageProps) {
   const [search, setSearch] = useState("")
   const [statusFilter, setStatusFilter] = useState(searchParams.get("status") || "all")
   const [actionLoading, setActionLoading] = useState<string | null>(null)
+  const [selected, setSelected] = useState<Set<string>>(new Set())
+  const [deleteLoading, setDeleteLoading] = useState(false)
 
   // Modal states
   const [clientModalEmail, setClientModalEmail] = useState<string | null>(null)
@@ -179,6 +184,60 @@ export default function LocationsPage({ params }: LocationsPageProps) {
     setActionLoading(null)
   }
 
+  const toggleSelect = (id: string) => {
+    setSelected((prev) => {
+      const next = new Set(prev)
+      if (next.has(id)) next.delete(id)
+      else next.add(id)
+      return next
+    })
+  }
+
+  const toggleSelectAll = () => {
+    if (selected.size === rentals.length) {
+      setSelected(new Set())
+    } else {
+      setSelected(new Set(rentals.map((r) => r.id)))
+    }
+  }
+
+  const handleDeleteSelected = async () => {
+    if (!selected.size) return
+    const confirmed = window.confirm(
+      `Supprimer définitivement ${selected.size} réservation(s) ? Cette action est irréversible.`
+    )
+    if (!confirmed) return
+
+    setDeleteLoading(true)
+    const result = await deleteRentals(Array.from(selected))
+    if (result.success) {
+      toast({ title: `${selected.size} réservation(s) supprimée(s)`, variant: "success" })
+      setSelected(new Set())
+      loadRentals()
+      loadStats()
+    } else {
+      toast({ title: "Erreur", description: result.error, variant: "destructive" })
+    }
+    setDeleteLoading(false)
+  }
+
+  const handleDeleteOne = async (id: string) => {
+    const confirmed = window.confirm("Supprimer définitivement cette réservation ?")
+    if (!confirmed) return
+
+    setActionLoading(id)
+    const result = await deleteRentals([id])
+    if (result.success) {
+      toast({ title: "Réservation supprimée", variant: "success" })
+      setSelected((prev) => { const next = new Set(prev); next.delete(id); return next })
+      loadRentals()
+      loadStats()
+    } else {
+      toast({ title: "Erreur", description: result.error, variant: "destructive" })
+    }
+    setActionLoading(null)
+  }
+
   const formatDate = (date: string) =>
     new Date(date).toLocaleDateString("fr-FR", { day: "2-digit", month: "2-digit", year: "numeric" })
 
@@ -195,7 +254,7 @@ export default function LocationsPage({ params }: LocationsPageProps) {
           </h1>
           <div className="absolute -bottom-2 left-0 w-16 h-1 bg-gradient-to-r from-ar-gold to-transparent rounded-full" />
         </div>
-        <Link href={`/${locale}/admin/locations/vehicules`}>
+        <Link href={`${localePath(locale, '/admin/locations/vehicules')}`}>
           <Button
             variant="outline"
             className="border-ar-gold/30 text-ar-gold hover:bg-ar-gold/10 hover:border-ar-gold/50 w-full sm:w-auto"
@@ -290,11 +349,47 @@ export default function LocationsPage({ params }: LocationsPageProps) {
         </Button>
       </div>
 
+      {/* Barre suppression en masse */}
+      {selected.size > 0 && (
+        <div className="flex items-center justify-between bg-red-500/10 border border-red-500/30 rounded-xl px-4 py-3">
+          <span className="text-sm text-red-400 font-medium">
+            {selected.size} réservation(s) sélectionnée(s)
+          </span>
+          <div className="flex items-center gap-2">
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={() => setSelected(new Set())}
+              className="border-gray-600 text-gray-400 hover:text-white hover:border-gray-400"
+            >
+              Annuler
+            </Button>
+            <Button
+              variant="destructive"
+              size="sm"
+              onClick={handleDeleteSelected}
+              disabled={deleteLoading}
+              className="bg-red-600 hover:bg-red-700"
+            >
+              <Trash2 className="h-4 w-4 mr-2" />
+              {deleteLoading ? "Suppression..." : "Supprimer"}
+            </Button>
+          </div>
+        </div>
+      )}
+
       {/* Tableau */}
       <div className="bg-gradient-to-br from-ar-gray/80 to-ar-dark/90 rounded-xl border border-ar-gold/10 overflow-hidden shadow-lg shadow-ar-gold/5 backdrop-blur-sm">
         <Table>
           <TableHeader>
             <TableRow className="border-ar-gold/10 hover:bg-transparent">
+              <TableHead className="w-10">
+                <Checkbox
+                  checked={rentals.length > 0 && selected.size === rentals.length}
+                  onCheckedChange={toggleSelectAll}
+                  className="border-ar-gold/30 data-[state=checked]:bg-ar-gold data-[state=checked]:border-ar-gold"
+                />
+              </TableHead>
               <TableHead className="text-gray-400 font-medium hidden sm:table-cell">Référence</TableHead>
               <TableHead className="text-gray-400 font-medium">Client</TableHead>
               <TableHead className="text-gray-400 font-medium hidden md:table-cell">Véhicule</TableHead>
@@ -308,14 +403,14 @@ export default function LocationsPage({ params }: LocationsPageProps) {
             {loading ? (
               Array.from({ length: 5 }).map((_, i) => (
                 <TableRow key={i} className="border-ar-gold/10">
-                  <TableCell colSpan={7}>
+                  <TableCell colSpan={8}>
                     <Skeleton className="h-12 w-full bg-ar-gold/5" />
                   </TableCell>
                 </TableRow>
               ))
             ) : rentals.length === 0 ? (
               <TableRow className="border-ar-gold/10">
-                <TableCell colSpan={7} className="text-center py-16">
+                <TableCell colSpan={8} className="text-center py-16">
                   <div className="w-16 h-16 rounded-full bg-ar-gold/10 flex items-center justify-center mx-auto mb-4">
                     <Calendar className="h-8 w-8 text-ar-gold/50" />
                   </div>
@@ -326,7 +421,14 @@ export default function LocationsPage({ params }: LocationsPageProps) {
               rentals.map((rental) => {
                 const cfg = STATUS_CONFIG[rental.status] ?? STATUS_CONFIG.pending
                 return (
-                  <TableRow key={rental.id} className="border-ar-gold/10 hover:bg-ar-gold/5 transition-colors">
+                  <TableRow key={rental.id} className={`border-ar-gold/10 hover:bg-ar-gold/5 transition-colors ${selected.has(rental.id) ? "bg-ar-gold/5" : ""}`}>
+                    <TableCell>
+                      <Checkbox
+                        checked={selected.has(rental.id)}
+                        onCheckedChange={() => toggleSelect(rental.id)}
+                        className="border-ar-gold/30 data-[state=checked]:bg-ar-gold data-[state=checked]:border-ar-gold"
+                      />
+                    </TableCell>
                     <TableCell className="hidden sm:table-cell">
                       <span className="font-mono text-ar-gold font-bold text-sm">{rental.reference}</span>
                     </TableCell>
@@ -374,7 +476,7 @@ export default function LocationsPage({ params }: LocationsPageProps) {
                         >
                           <DropdownMenuItem asChild>
                             <Link
-                              href={`/${locale}/admin/locations/${rental.id}`}
+                              href={`${localePath(locale, `/admin/locations/${rental.id}`)}`}
                               className="text-white hover:text-ar-gold hover:bg-ar-gold/10 cursor-pointer focus:bg-ar-gold/10 focus:text-ar-gold"
                             >
                               <Eye className="h-4 w-4 mr-2" />
@@ -427,6 +529,14 @@ export default function LocationsPage({ params }: LocationsPageProps) {
                               </DropdownMenuItem>
                             </>
                           )}
+                          <DropdownMenuSeparator className="bg-ar-gold/10" />
+                          <DropdownMenuItem
+                            onClick={() => handleDeleteOne(rental.id)}
+                            className="text-red-400 hover:text-red-300 hover:bg-red-500/10 cursor-pointer focus:bg-red-500/10 focus:text-red-300"
+                          >
+                            <Trash2 className="h-4 w-4 mr-2" />
+                            Supprimer
+                          </DropdownMenuItem>
                         </DropdownMenuContent>
                       </DropdownMenu>
                     </TableCell>

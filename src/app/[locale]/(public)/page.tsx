@@ -15,6 +15,7 @@ const LatestArrivalsSection = dynamic(() => import("@/components/home/LatestArri
 const ContactCTASection = dynamic(() => import("@/components/home/ContactCTASection").then(m => ({ default: m.ContactCTASection })));
 const RentalShowcaseSection = dynamic(() => import("@/components/home/RentalShowcaseSection").then(m => ({ default: m.RentalShowcaseSection })));
 import type { VehicleCard } from "@/types/vehicle";
+import { localePath } from '@/lib/constants'
 
 interface HomePageProps {
   params: { locale: string };
@@ -40,11 +41,11 @@ export async function generateMetadata({
     title: titles[locale as keyof typeof titles] || titles.fr,
     description: descriptions[locale as keyof typeof descriptions] || descriptions.fr,
     alternates: {
-      canonical: `/${locale}`,
+      canonical: locale === "fr" ? "/" : `${localePath(locale)}`,
       languages: {
-        fr: "/fr",
+        fr: "/",
         en: "/en",
-        "x-default": "/fr",
+        "x-default": "/",
       },
     },
     openGraph: {

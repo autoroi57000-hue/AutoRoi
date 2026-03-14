@@ -1,6 +1,7 @@
 import type { ReactNode } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
+import { localePath } from '@/lib/constants'
 
 interface AuthLayoutProps {
   children: ReactNode
@@ -55,7 +56,7 @@ export default function AuthLayout({ children, params }: AuthLayoutProps) {
 
       <div className="relative z-10 flex w-full max-w-[420px] flex-col items-center">
         {/* Logo */}
-        <Link href={`/${params.locale}`} className="mb-10 block">
+        <Link href={localePath(params.locale)} className="mb-10 block">
           <div className="flex flex-col items-center gap-4">
             <div
               className="anim-logo relative h-20 w-20 overflow-hidden rounded-full"

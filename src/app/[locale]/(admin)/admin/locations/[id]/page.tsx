@@ -52,6 +52,7 @@ import { toast } from "@/hooks/use-toast"
 import type { RentalStatus } from "@/types/rental"
 import dynamic from "next/dynamic"
 import ClientProfileModal from "@/components/admin/ClientProfileModal"
+import { localePath } from '@/lib/constants'
 
 const ContractPreviewModal = dynamic(
   () => import("@/components/admin/ContractPreviewModal"),
@@ -93,7 +94,7 @@ export default function RentalDetailPage({ params }: RentalDetailPageProps) {
       setNotes(result.rental.internal_notes ?? "")
     } else {
       toast({ title: "Erreur", description: "Réservation introuvable", variant: "destructive" })
-      router.push(`/${locale}/admin/locations`)
+      router.push(`${localePath(locale, '/admin/locations')}`)
     }
     setLoading(false)
   }
@@ -178,7 +179,7 @@ export default function RentalDetailPage({ params }: RentalDetailPageProps) {
       {/* Header */}
       <div className="flex items-center justify-between flex-wrap gap-4">
         <div className="flex items-center gap-4">
-          <Link href={`/${locale}/admin/locations`}>
+          <Link href={`${localePath(locale, '/admin/locations')}`}>
             <Button variant="ghost" size="icon" className="hover:bg-ar-gold/10 hover:text-ar-gold">
               <ArrowLeft className="h-5 w-5" />
             </Button>

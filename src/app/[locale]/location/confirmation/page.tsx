@@ -3,7 +3,7 @@ import Link from "next/link"
 import { stripe } from "@/lib/stripe"
 import { createAdminClient } from "@/lib/supabase/server"
 import { formatPrice } from "@/lib/utils"
-import { SITE_NAME } from "@/lib/constants"
+import { SITE_NAME, localePath} from '@/lib/constants'
 import { CheckCircle2, Calendar, Car, CreditCard, ChevronRight, Home } from "lucide-react"
 import type { Rental } from "@/types/rental"
 
@@ -27,7 +27,7 @@ export default async function RentalConfirmationPage({ params, searchParams }: P
 
   // 1. session_id absent → redirection catalogue
   if (!session_id) {
-    redirect(`/${locale}/location`)
+    redirect(`${localePath(locale, '/location')}`)
   }
 
   // 2. Vérifier la session Stripe côté serveur
@@ -37,18 +37,18 @@ export default async function RentalConfirmationPage({ params, searchParams }: P
       expand: ["payment_intent"],
     })
   } catch {
-    redirect(`/${locale}/location`)
+    redirect(`${localePath(locale, '/location')}`)
   }
 
   // 3. Vérifier que le paiement est bien réussi
   if (session.payment_status !== "paid") {
-    redirect(`/${locale}/location`)
+    redirect(`${localePath(locale, '/location')}`)
   }
 
   // 4. Récupérer la réservation depuis les metadata
   const rentalId = session.metadata?.rental_id
   if (!rentalId) {
-    redirect(`/${locale}/location`)
+    redirect(`${localePath(locale, '/location')}`)
   }
 
   const supabase = createAdminClient()
@@ -59,7 +59,7 @@ export default async function RentalConfirmationPage({ params, searchParams }: P
     .single()
 
   if (!rentalData) {
-    redirect(`/${locale}/location`)
+    redirect(`${localePath(locale, '/location')}`)
   }
 
   const rental = rentalData as unknown as Rental
@@ -89,12 +89,12 @@ export default async function RentalConfirmationPage({ params, searchParams }: P
           className="flex items-center gap-1.5 text-xs mb-8"
           style={{ color: "rgba(255,255,255,0.4)" }}
         >
-          <Link href={`/${locale}`} className="hover:text-ar-gold transition-colors flex items-center gap-1">
+          <Link href={`${localePath(locale)}`} className="hover:text-ar-gold transition-colors flex items-center gap-1">
             <Home className="h-3 w-3" />
             {isFr ? "Accueil" : "Home"}
           </Link>
           <ChevronRight className="h-3 w-3 opacity-40" />
-          <Link href={`/${locale}/location`} className="hover:text-ar-gold transition-colors">
+          <Link href={`${localePath(locale, '/location')}`} className="hover:text-ar-gold transition-colors">
             {isFr ? "Location" : "Rental"}
           </Link>
           <ChevronRight className="h-3 w-3 opacity-40" />
@@ -280,7 +280,7 @@ export default async function RentalConfirmationPage({ params, searchParams }: P
         {/* ── CTA retour ── */}
         <div className="text-center">
           <Link
-            href={`/${locale}/location`}
+            href={`${localePath(locale, '/location')}`}
             className="inline-flex items-center gap-2 text-sm font-semibold transition-colors"
             style={{ color: "rgba(201,168,76,0.7)" }}
           >

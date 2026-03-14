@@ -76,7 +76,7 @@ function buildAdminAlertEmail(
         <div class="message-box">${esc(message)}</div>
       </div>
       <div class="cta">
-        <a href="${siteUrl}/fr/admin/messages">Voir dans l'admin</a>
+        <a href="${siteUrl}/admin/messages">Voir dans l'admin</a>
       </div>
     </div>
     <div class="footer">

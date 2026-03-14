@@ -23,6 +23,7 @@ import { calculateRentalPrice } from "@/lib/rental-pricing"
 import { createRentalReservation, getOccupiedDates } from "./actions"
 import { MagneticButton } from "@/components/ui/MagneticButton"
 import type { RentalVehicle, RentalOption, OccupiedDateRange, RentalPricingResult } from "@/types/rental"
+import { localePath } from '@/lib/constants'
 
 // ─── Props ────────────────────────────────────────────────────────────────────
 
@@ -212,11 +213,11 @@ export function RentalBookingClient({ vehicle, options, locale, cancelled }: Pro
       <div className="relative container mx-auto px-4 py-8" style={{ zIndex: 1 }}>
         {/* Breadcrumb */}
         <nav className="flex items-center gap-1.5 text-xs mb-6" style={{ color: "rgba(255,255,255,0.4)" }}>
-          <Link href={`/${locale}`} className="hover:text-ar-gold transition-colors flex items-center gap-1">
+          <Link href={`${localePath(locale)}`} className="hover:text-ar-gold transition-colors flex items-center gap-1">
             <Home className="h-3 w-3" />
           </Link>
           <ChevronRight className="h-3 w-3 opacity-40" />
-          <Link href={`/${locale}/location`} className="hover:text-ar-gold transition-colors">
+          <Link href={`${localePath(locale, '/location')}`} className="hover:text-ar-gold transition-colors">
             {isFr ? "Location" : "Rental"}
           </Link>
           <ChevronRight className="h-3 w-3 opacity-40" />

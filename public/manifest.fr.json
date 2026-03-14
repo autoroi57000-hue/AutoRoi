@@ -2,7 +2,7 @@
   "name": "AUTO ROI",
   "short_name": "Auto Roi",
   "description": "Achat, vente et location de véhicules premium",
-  "start_url": "/fr/",
+  "start_url": "/",
   "scope": "/",
   "display": "standalone",
   "orientation": "portrait",
@@ -23,17 +23,17 @@
   "shortcuts": [
     {
       "name": "Nos véhicules",
-      "url": "/fr/vehicules",
+      "url": "/vehicules",
       "icons": [{ "src": "/icons/icon-96.png", "sizes": "96x96" }]
     },
     {
       "name": "Location",
-      "url": "/fr/location",
+      "url": "/location",
       "icons": [{ "src": "/icons/icon-96.png", "sizes": "96x96" }]
     },
     {
       "name": "Contact",
-      "url": "/fr/contact",
+      "url": "/contact",
       "icons": [{ "src": "/icons/icon-96.png", "sizes": "96x96" }]
     }
   ]

@@ -347,6 +347,13 @@ export async function deleteRentalVehicle(id: string): Promise<ActionResult> {
       }
     }
 
+    // Supprimer les réservations terminées/annulées liées (FK ON DELETE RESTRICT)
+    await (supabase as AnyClient)
+      .from("rentals")
+      .delete()
+      .eq("rental_vehicle_id", id)
+      .in("status", ["cancelled", "no_show", "completed"])
+
     const { error: deleteError } = await (supabase as AnyClient)
       .from("rental_vehicles")
       .delete()

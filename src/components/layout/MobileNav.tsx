@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { Menu, X } from "lucide-react";
-import { SITE_NAME } from "@/lib/constants";
+import { SITE_NAME, localePath} from '@/lib/constants';
 
 interface MobileNavProps {
   locale: string;
@@ -13,8 +13,8 @@ export function MobileNav({ locale }: MobileNavProps) {
   const [isOpen, setIsOpen] = useState(false);
 
   const navLinks = [
-    { href: `/${locale}/vehicules`, label: "Véhicules" },
-    { href: `/${locale}/contact`, label: "Contact" },
+    { href: `${localePath(locale, '/vehicules')}`, label: "Véhicules" },
+    { href: `${localePath(locale, '/contact')}`, label: "Contact" },
   ];
 
   return (

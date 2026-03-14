@@ -402,7 +402,7 @@ function templateConfirmationAdmin(
       <div class="info-row"><span class="info-label">Statut</span><span class="info-value">${esc(rental.status)}</span></div>
 
       <div style="text-align:center;margin:32px 0;">
-        <a href="${siteUrl}/fr/admin/locations/${esc(rental.id)}" class="btn">
+        <a href="${siteUrl}/admin/locations/${esc(rental.id)}" class="btn">
           Voir dans le dashboard →
         </a>
       </div>
@@ -685,7 +685,7 @@ function templateCancellation(
           : "Our rental vehicle catalogue remains available. Feel free to make a new booking."}
       </p>
       <div style="text-align:center;margin:20px 0;">
-        <a href="${siteUrl}/fr/location" class="btn-outline">
+        <a href="${siteUrl}/location" class="btn-outline">
           ${isFr ? "Voir les véhicules disponibles" : "View available vehicles"}
         </a>
       </div>

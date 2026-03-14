@@ -7,7 +7,7 @@ import { motion, useReducedMotion } from "framer-motion";
 import { useTranslations } from "next-intl";
 import type { VehicleCard as VehicleCardType } from "@/types/vehicle";
 import { formatPrice, formatMileage } from "@/lib/utils";
-import { FUEL_LABELS } from "@/lib/constants";
+import { FUEL_LABELS, localePath} from '@/lib/constants';
 import { Fuel, Gauge, Calendar, ArrowRight, Check } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { fadeInUp, imageZoom, cardHover } from "@/lib/animations";
@@ -80,7 +80,7 @@ export function VehicleCard({
 
   return (
     <Wrapper {...wrapperProps}>
-      <Link href={`/${locale}/vehicules/${vehicle.slug}`}>
+      <Link href={`${localePath(locale, `/vehicules/${vehicle.slug}`)}`}>
         <motion.div
           {...(animated ? { variants: cardHover } : {})}
           className="vehicle-card-glow vehicle-card-3d group relative overflow-hidden rounded-2xl"
