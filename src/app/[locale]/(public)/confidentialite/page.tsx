@@ -10,7 +10,7 @@ export async function generateMetadata({
   const t = await getTranslations({ locale, namespace: "meta" });
   return {
     title: "Politique de Confidentialité — Auto Roi",
-    description: t("homeDescription"),
+    description: "Politique de confidentialité d'Auto Roi — gestion de vos données personnelles, cookies et droits RGPD.",
   };
 }
 

@@ -48,6 +48,22 @@ export const metadata: Metadata = {
     statusBarStyle: "black-translucent",
     title: "Auto Roi",
   },
+  openGraph: {
+    type: "website",
+    siteName: "Auto Roi",
+    locale: "fr_FR",
+    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "Auto Roi — Véhicules Premium" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    site: "@AutoRoi",
+  },
+  alternates: {
+    languages: {
+      "fr": process.env.NEXT_PUBLIC_SITE_URL || "https://autoroi.fr",
+      "en": `${process.env.NEXT_PUBLIC_SITE_URL || "https://autoroi.fr"}/en`,
+    },
+  },
   other: {
     "mobile-web-app-capable": "yes",
     "msapplication-TileColor": "#0a0a0a",

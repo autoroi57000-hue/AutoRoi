@@ -10,7 +10,7 @@ export async function generateMetadata({
   const t = await getTranslations({ locale, namespace: "meta" });
   return {
     title: "Conditions Générales de Location — Auto Roi",
-    description: t("homeDescription"),
+    description: "Conditions générales de vente location Auto Roi — tarifs, modalités de réservation et politique d'annulation.",
   };
 }
 

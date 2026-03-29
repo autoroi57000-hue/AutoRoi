@@ -10,7 +10,7 @@ export async function generateMetadata({
   const t = await getTranslations({ locale, namespace: "meta" });
   return {
     title: t("legalTitle"),
-    description: t("homeDescription"),
+    description: "Mentions légales d'Auto Roi — informations légales, éditeur du site, hébergement et conditions d'utilisation.",
   };
 }
 
